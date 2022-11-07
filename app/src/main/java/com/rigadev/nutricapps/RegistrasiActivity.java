@@ -2,30 +2,25 @@ package com.rigadev.nutricapps;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.rigadev.nutricapps.databinding.ActivityMainBinding;
+import com.rigadev.nutricapps.databinding.ActivityRegistrasiBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class RegistrasiActivity extends AppCompatActivity {
 
-    Context context = this;
-
-    ActivityMainBinding binding;
+    ActivityRegistrasiBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityRegistrasiBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.buttonMulai.setOnClickListener(new View.OnClickListener() {
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, LoginActivity.class));
-                finish();
+                onBackPressed();
             }
         });
     }

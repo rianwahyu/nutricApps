@@ -7,25 +7,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.rigadev.nutricapps.databinding.ActivityMainBinding;
+import com.rigadev.nutricapps.databinding.ActivityLoginBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     Context context = this;
 
-    ActivityMainBinding binding;
+    ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.buttonMulai.setOnClickListener(new View.OnClickListener() {
+        binding.textBelumPunyaAkun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, LoginActivity.class));
-                finish();
+                startActivity(new Intent(context, RegistrasiActivity.class));
+            }
+        });
+
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
     }
