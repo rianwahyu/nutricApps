@@ -66,7 +66,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
 
     public void callFood(){
         listFood.clear();
-        //onLoadCategory();
+        voidOnLoadFood();
         String url = NetworkState.foodApiUrl+"getFood.php" ;
         RequestQueue mRequestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
@@ -80,7 +80,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                 boolean success = jsonObject.getBoolean("success");
                                 String message = jsonObject.getString("message");
                                 if (success == true){
-                                    //onFoundCategory();
+                                    onFoundFood();
                                     String data = jsonObject.getString("data");
                                     JSONArray jsonarray=new JSONArray(data);
                                     for(int i=0;i<jsonarray.length();i++) {
@@ -114,11 +114,12 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                     }
                                     adapterFood.notifyDataSetChanged();
                                 }else{
+                                    onNotFoundFood();
                                     MyConfig.showToast(context, message);
                                 }
 
                             } catch (JSONException e) {
-                                //showSnackBar("Koneksi ke Server Bermasalah, Silahkan Coba Lagi");
+                                onNotFoundFood();
                                 Log.e("catchException",e.toString());
                                 e.printStackTrace();
                             }
@@ -147,6 +148,21 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         stringRequest.setRetryPolicy(policy);
         mRequestQueue.add(stringRequest);
+    }
+
+    void voidOnLoadFood(){
+        binding.shimmerMakanan.setVisibility(View.VISIBLE);
+        binding.rcMakanan.setVisibility(View.GONE);
+    }
+
+    void onFoundFood(){
+        binding.shimmerMakanan.setVisibility(View.GONE);
+        binding.rcMakanan.setVisibility(View.VISIBLE);
+    }
+
+    void onNotFoundFood(){
+        binding.shimmerMakanan.setVisibility(View.GONE);
+        binding.rcMakanan.setVisibility(View.GONE);
     }
 
     @Override

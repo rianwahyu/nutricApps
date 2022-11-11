@@ -3,7 +3,7 @@ package com.rigadev.nutricapps.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-
+import com.rigadev.nutricapps.BuildConfig;
 
 
 public class SessionManager {
@@ -11,21 +11,35 @@ public class SessionManager {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
 
-    /*public SessionManager(Context context) {
+    public SessionManager(Context context) {
         this.context = context;
         preferences = context.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
         editor = preferences.edit();
     }
 
-    public void login(String userID, String username, String fullname, String position ,String role) {
-        editor.putString("idUser", userID);
+
+    public void login(String idUser, String username, String email) {
+        editor.putString("idUser", idUser);
         editor.putString("username", username);
-        editor.putString("fullname", fullname);
-        editor.putString("position", position);
-        editor.putString("role", role);
+        editor.putString("email", email);
         editor.putBoolean("logged", true);
         editor.commit();
     }
+
+    public void logOut() {
+        editor.putString("idUser", null);
+        editor.putString("username", null);
+        editor.putString("email", null);
+        editor.putBoolean("logged", false);
+        editor.commit();
+    }
+
+    public boolean isLoggedin() {
+        return preferences.getBoolean("logged", false);
+    }
+
+    /*
+
 
     public void logOut() {
         editor.putString("idUser", null);

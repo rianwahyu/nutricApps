@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.rigadev.nutricapps.databinding.ActivitySplashSceenBinding;
+import com.rigadev.nutricapps.util.SessionManager;
 
 public class SplashSceenActivity extends AppCompatActivity {
 
@@ -27,20 +28,15 @@ public class SplashSceenActivity extends AppCompatActivity {
         runnable = new Runnable() {
             @Override
             public void run() {
-                /*if (new SessionManager(context).isLoggedin()){
-                    Intent o = new Intent(context, MainActivity.class);
+                if (new SessionManager(context).isLoggedin()){
+                    Intent o = new Intent(context, HomeActivity.class);
                     startActivity(o);
                     finish();
                 }else {
-                    Intent o = new Intent(context, LoginActivityActivity.class);
+                    Intent o = new Intent(context, MainActivity.class);
                     startActivity(o);
                     finish();
-                }*/
-
-                Intent o = new Intent(context, MainActivity.class);
-                startActivity(o);
-                finish();
-
+                }
             }
         };
         handler.postDelayed(runnable, timeWait);

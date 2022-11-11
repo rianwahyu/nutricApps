@@ -68,7 +68,7 @@
                 android:textColor="#4B6855"/>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/eNamaLengkap"
+                android:id="@+id/etNamaLengkap"
                 app:layout_constraintTop_toBottomOf="@+id/titleNamaLengkap"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                 android:text="Nama Pengguna"
                 android:textSize="25sp"
                 android:fontFamily="@font/quicksand_bold"
-                app:layout_constraintTop_toBottomOf="@id/eNamaLengkap"
+                app:layout_constraintTop_toBottomOf="@id/etNamaLengkap"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -189,6 +189,7 @@
 
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReistrasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Registrasi"
@@ -201,7 +202,9 @@
                 android:layout_marginBottom="@dimen/_20sdp"
                 app:backgroundTint="#575757"
                 android:fontFamily="@font/quicksand_bold"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

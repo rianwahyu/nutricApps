@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
 
+    <color name="placeholder">#ACA9A9</color>
     <color name="primary">#A0D444</color>
     <color name="primaryDark">#66872C</color>
     <color name="background">#F5F5F5</color>
