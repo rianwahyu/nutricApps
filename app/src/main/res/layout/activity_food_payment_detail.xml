@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/coordinator"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pages.food.FoodDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:background="@color/background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tilteOrderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints"
+                android:text="Order ID"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textColor="@color/primaryDark"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+            <TextView
+                android:id="@+id/textOrderId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tilteOrderId"
+                app:layout_constraintLeft_toLeftOf="@id/tilteOrderId"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:text="1234"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_bold"
+                android:textSize="@dimen/_18ssp"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_3sdp"/>
+
+            <TextView
+                android:id="@+id/tilteTotalBayar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints"
+                android:text="Total Pembayaran"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textColor="@color/primaryDark"
+                app:layout_constraintTop_toBottomOf="@+id/textOrderId"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/textTotalPayment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tilteTotalBayar"
+                app:layout_constraintLeft_toLeftOf="@id/tilteTotalBayar"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:text="1234"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_bold"
+                android:textSize="@dimen/_18ssp"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_3sdp"/>
+
+
+            <TextView
+                android:id="@+id/tiltePilihMetode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints"
+                android:text="Metode Pembayaran"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textColor="@color/primaryDark"
+                app:layout_constraintTop_toBottomOf="@+id/textTotalPayment"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"/>
+
+
+            <RelativeLayout
+                android:id="@+id/relativeMetodePembayaran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/input_shape_white"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintTop_toBottomOf="@+id/tiltePilihMetode"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinnerMetodePembayaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    android:textSize="@dimen/_10ssp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/ic_dropwodn_light" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tilteNoAkun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints"
+                android:text="Nomor Akun"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textColor="@color/primaryDark"
+                app:layout_constraintTop_toBottomOf="@+id/relativeMetodePembayaran"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/textNoAkun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tilteNoAkun"
+                app:layout_constraintLeft_toLeftOf="@id/tilteNoAkun"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:text="1234"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_bold"
+                android:textSize="@dimen/_18ssp"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_3sdp"/>
+
+
+            <TextView
+                android:id="@+id/titleBuktiBayar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints"
+                android:text="Lampirkan Bukti Pembayaran"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textColor="@color/primaryDark"
+                app:layout_constraintTop_toBottomOf="@+id/textNoAkun"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonBuktiPembayaran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/titleBuktiBayar"
+                app:layout_constraintLeft_toLeftOf="@id/titleBuktiBayar"
+                android:text="Pilih File"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/primaryDark"
+                android:layout_marginTop="@dimen/_3sdp"/>
+
+            <FrameLayout
+                android:id="@+id/framePhoto"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_80sdp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/buttonBuktiPembayaran"
+                app:layout_constraintLeft_toRightOf="@id/buttonBuktiPembayaran"
+                android:layout_marginTop="@dimen/_3sdp">
+
+                <ImageView
+                    android:id="@+id/imgMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/placeholder_camera" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textKeterangan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/keteranganPembayaran"
+                app:layout_constraintTop_toBottomOf="@+id/framePhoto"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/quicksand_light"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                android:gravity="start"
+                android:textAlignment="textStart"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUpload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kirim Bukti Pembayaran"
+                android:background="@drawable/rectangle_login_button"
+                app:layout_constraintTop_toBottomOf="@+id/textKeterangan"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                app:backgroundTint="#575757"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/quicksand_bold"
+                android:textAllCaps="false"/>
+
+            <!--<TextView
+                android:id="@+id/titleKeterangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textNamaMenu"
+                app:layout_constraintLeft_toLeftOf="@id/textNamaMenu"
+                android:text="Keterangan "
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/textDeskripsi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/titleKeterangan"
+                app:layout_constraintLeft_toLeftOf="@id/titleKeterangan"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="10dp"
+                android:text="Keterangan value"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textSize="@dimen/_11ssp"/>-->
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

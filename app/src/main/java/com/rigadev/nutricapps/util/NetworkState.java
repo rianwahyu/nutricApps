@@ -2,7 +2,7 @@ package com.rigadev.nutricapps.util;
 
 public class NetworkState {
 
-    public static String baseUrl = "http://192.168.1.105:8080/nutricapps_web/";
+    public static String baseUrl = "https://demonutricapps.rigadevofc.com/";
 
     public static String locatedStorage = baseUrl+"storages/";
 
@@ -12,13 +12,9 @@ public class NetworkState {
 
     public static String foodApiUrl = baseUrl+"api/food/";
 
-    public static String getBaseUrl() {
-        return baseUrl;
-    }
+    public static String doctorApiUrl = baseUrl+"api/doctor/";
 
-    public static String getBaseApiUrl() {
-        return baseApiUrl;
-    }
+    public static String otherApiUrl = baseUrl+"api/other/";
 
 
 }

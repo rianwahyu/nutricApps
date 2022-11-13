@@ -38,6 +38,11 @@ public class SessionManager {
         return preferences.getBoolean("logged", false);
     }
 
+    public String getIdUser() {
+        return preferences.getString("idUser", "");
+    }
+
+
     /*
 
 
@@ -65,9 +70,7 @@ public class SessionManager {
     public String getFullname() {
         return preferences.getString("fullname", "");
     }
-    public String getIdUser() {
-        return preferences.getString("idUser", "");
-    }
+
 
     public String getidLink() {
         return preferences.getString("idLink", "");

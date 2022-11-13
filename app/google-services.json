@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "372675968445",
+    "project_id": "nutric-apps-8c89c",
+    "storage_bucket": "nutric-apps-8c89c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372675968445:android:4303030388a007f8fd66d4",
+        "android_client_info": {
+          "package_name": "com.rigadev.nutricapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372675968445-s1bn0pv6qmign1h3ji48rf0s0s5lilfq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK12pMtJ4CN9SicRid8tm9sqxy_k6n6mY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372675968445-s1bn0pv6qmign1h3ji48rf0s0s5lilfq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

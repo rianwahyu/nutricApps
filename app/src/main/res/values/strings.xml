@@ -2,4 +2,8 @@
     <string name="app_name">Nutric Apps</string>
 
     <string name="welcomePageSubs">Halo, Selamat datang!\nMari mulai hidup sehat\nbersama Nutric</string>
+
+    <string name="keteranganPembayaran">Pilih metode pembayaran, lakukanlah pembayaran sesuai dengan nominal.
+    Setelah melakukan pembayaran upload / lampirkan bukti pembayaran anda dan sistem akan melakukan validasi dan pengecekan pengiriman.
+        Jika pembayaran telah tervalidasi, maka makanan sehat anda akan dikirimkan oleh kurir kami. Mohon menunggu, Terima Kasih</string>
 </resources>
