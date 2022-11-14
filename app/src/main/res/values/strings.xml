@@ -6,4 +6,11 @@
     <string name="keteranganPembayaran">Pilih metode pembayaran, lakukanlah pembayaran sesuai dengan nominal.
     Setelah melakukan pembayaran upload / lampirkan bukti pembayaran anda dan sistem akan melakukan validasi dan pengecekan pengiriman.
         Jika pembayaran telah tervalidasi, maka makanan sehat anda akan dikirimkan oleh kurir kami. Mohon menunggu, Terima Kasih</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="tab_diary_plate">Isi Piringku</string>
+    <string name="tab_diary_activity">Aktifitasku</string>
+
 </resources>

@@ -21,9 +21,13 @@ import com.rigadev.nutricapps.adapter.AdapterDoctor;
 import com.rigadev.nutricapps.adapter.AdapterFood;
 import com.rigadev.nutricapps.databinding.ActivityHomeBinding;
 import com.rigadev.nutricapps.listener.ItemClickListener;
+import com.rigadev.nutricapps.listener.ItemDoctorClickListener;
 import com.rigadev.nutricapps.model.DoctorModel;
 import com.rigadev.nutricapps.model.FoodModel;
+import com.rigadev.nutricapps.pages.diary.MyDiaryActivity;
 import com.rigadev.nutricapps.pages.doctor.DaftarDokterActivity;
+import com.rigadev.nutricapps.pages.doctor.DetailDoctorActivity;
+import com.rigadev.nutricapps.pages.food.DaftarMakananActivity;
 import com.rigadev.nutricapps.pages.food.FoodDetailActivity;
 import com.rigadev.nutricapps.util.MyConfig;
 import com.rigadev.nutricapps.util.NetworkState;
@@ -37,7 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HomeActivity extends AppCompatActivity implements ItemClickListener {
+public class HomeActivity extends AppCompatActivity implements ItemClickListener, ItemDoctorClickListener {
 
     Context context = this;
 
@@ -71,6 +75,27 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
             }
         });
 
+        binding.textLihatSemuaMakanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, DaftarMakananActivity.class));
+            }
+        });
+
+        binding.linearMakananBottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, DaftarMakananActivity.class));
+            }
+        });
+
+        binding.linearMyDiaryBottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, MyDiaryActivity.class));
+            }
+        });
+
     }
 
     private void initRC() {
@@ -89,6 +114,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
         binding.rcDokter.setLayoutManager(linearLayutDoctor);
         adapterDoctor = new AdapterDoctor(context, listDoctor);
         binding.rcDokter.setAdapter(adapterDoctor);
+        adapterDoctor.setDoctorClickListener(this);
         callDoctor();
     }
 
@@ -224,7 +250,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                         String linkLinkedIn = users.getString("linkLinkedIn");
                                         String shortBiography = users.getString("shortBiography");
                                         String fee = users.getString("fee");
-                                        String doctorPhoto = NetworkState.locatedStorage+"/doctor/"+ users.getString("foodPhoto");
+                                        String doctorPhoto = NetworkState.locatedStorage+"/doctor/"+ users.getString("doctorPhoto");
                                         String status = users.getString("status");
 
                                         DoctorModel dataItem = new DoctorModel();
@@ -311,6 +337,24 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
         intent.putExtra("expired", fm.getExpired());
         intent.putExtra("price", fm.getPrice());
         intent.putExtra("foodPhoto", fm.getFoodPhoto());
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onDoctorClick(View view, int position) {
+        DoctorModel dm = listDoctor.get(position);
+
+        Intent intent = new Intent(context, DetailDoctorActivity.class);
+        intent.putExtra("idDoctor", dm.getIdDoctor());
+        intent.putExtra("doctorName", dm.getFullname());
+        intent.putExtra("shortBiography", dm.getShortBiography());
+        intent.putExtra("specialist", dm.getSpecialist());
+        intent.putExtra("doctorPhoto", dm.getDoctorPhoto());
+        intent.putExtra("phoneNumber", dm.getPhoneNumber());
+        intent.putExtra("linkInstagram", dm.getLinkInstagram());
+        intent.putExtra("linkLinkedIn", dm.getLinkLinkedIn());
+        intent.putExtra("fee", dm.getFee());
         startActivity(intent);
 
     }

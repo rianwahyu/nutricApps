@@ -279,7 +279,9 @@
                                 android:paddingBottom="@dimen/_1sdp"
                                 android:elevation="5dp"
                                 android:layout_marginTop="@dimen/_5sdp"
-                                android:textSize="@dimen/_10ssp"/>
+                                android:textSize="@dimen/_10ssp"
+                                android:inputType="text"
+                                android:focusable="false"/>
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etNamaLengkap"
@@ -298,7 +300,8 @@
                                 android:paddingBottom="@dimen/_1sdp"
                                 android:elevation="5dp"
                                 android:layout_marginTop="@dimen/_5sdp"
-                                android:textSize="@dimen/_10ssp"/>
+                                android:textSize="@dimen/_10ssp"
+                                android:inputType="text"/>
 
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -318,7 +321,8 @@
                                 android:paddingBottom="@dimen/_1sdp"
                                 android:elevation="5dp"
                                 android:layout_marginTop="@dimen/_5sdp"
-                                android:textSize="@dimen/_10ssp"/>
+                                android:textSize="@dimen/_10ssp"
+                                android:inputType="number"/>
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnBuatJanji"

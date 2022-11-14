@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardFood"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginRight="@dimen/_5sdp"
+    android:layout_marginLeft="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_2sdp"
+    android:layout_marginBottom="@dimen/_2sdp"
+    app:cardCornerRadius="8dp"
+    android:elevation="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_3sdp">
+
+        <!--
+
+
+
+        <TextView
+            android:id="@+id/titleBiaya"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#575757"
+            android:fontFamily="@font/quicksand_semi_bold"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintTop_toBottomOf="@+id/textTempatPraktek"
+            app:layout_constraintLeft_toLeftOf="@id/textNamaDokter"
+            android:text="Biaya"/>
+
+        <TextView
+            android:id="@+id/textBiaya"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Rp 12345"
+            android:fontFamily="@font/quicksand_semi_bold"
+            app:layout_constraintTop_toBottomOf="@+id/titleBiaya"
+            app:layout_constraintLeft_toLeftOf="@id/textNamaDokter"
+            app:layout_constraintRight_toRightOf="@id/textNamaDokter"
+            android:textSize="@dimen/_11ssp"/>
+
+        -->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardImgFood"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp"
+            android:elevation="5dp"
+            android:layout_marginTop="@dimen/_5sdp">
+
+            <ImageView
+                android:id="@+id/imgFood"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/food_placeholder"
+                android:scaleType="fitXY"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textNamaMakanan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nama Makanan"
+            android:textColor="#575757"
+            android:fontFamily="@font/quicksand_semi_bold"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintTop_toTopOf="@id/cardImgFood"
+            app:layout_constraintLeft_toRightOf="@+id/cardImgFood"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_5sdp"/>
+
+
+        <TextView
+            android:id="@+id/textKeterangan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Keterangan"
+            android:fontFamily="@font/quicksand_semi_bold"
+            app:layout_constraintTop_toBottomOf="@+id/textNamaMakanan"
+            app:layout_constraintLeft_toLeftOf="@id/textNamaMakanan"
+            app:layout_constraintRight_toRightOf="@id/textNamaMakanan"
+            android:textSize="@dimen/_11ssp"
+            android:maxLines="4"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/textNutrisi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#575757"
+            android:fontFamily="@font/quicksand_semi_bold"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintTop_toTopOf="@+id/btnBeli"
+            app:layout_constraintLeft_toLeftOf="@id/textNamaMakanan"
+            android:text="Nutrisi : 0 gr"/>
+
+        <TextView
+            android:id="@+id/textKalori"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#575757"
+            android:fontFamily="@font/quicksand_semi_bold"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintTop_toBottomOf="@+id/textNutrisi"
+            app:layout_constraintLeft_toLeftOf="@id/textNamaMakanan"
+            android:text="Kalori : 0 gr"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBeli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beli"
+            app:layout_constraintTop_toBottomOf="@+id/cardImgFood"
+            app:layout_constraintLeft_toLeftOf="@id/cardImgFood"
+            app:layout_constraintRight_toRightOf="@id/cardImgFood"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:backgroundTint="#575757"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11ssp"
+            android:fontFamily="@font/quicksand_bold"
+            android:textAllCaps="false"
+            android:gravity="center"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -25,6 +25,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -512,7 +513,6 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
 
 
     private void processUpload() {
-
         ProgressLoadingJIGB.startLoading(context);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(RetrofitInterface.urlActivity)
@@ -554,14 +554,22 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
                                     @Override
                                     public void onClick(@NonNull AestheticDialog.Builder builder) {
                                         builder.dismiss();
-                                        startActivity(new Intent(context, HomeActivity.class));
-                                        finish();
                                     }
                                 })
                                 .setCancelable(true)
                                 .show();
 
-                        //onBackPressed();
+
+                        Handler handler = new Handler();
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                startActivity(new Intent(context, HomeActivity.class));
+                                finish();
+                            }
+                        };
+                        handler.postDelayed(runnable, 2000);
+
                     }else {
                         new AestheticDialog.Builder(
                                 FoodPaymentDetailActivity.this,

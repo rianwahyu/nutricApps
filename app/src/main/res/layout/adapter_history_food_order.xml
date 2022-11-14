@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardHistoryFood"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginRight="@dimen/_5sdp"
+    android:layout_marginLeft="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_2sdp"
+    android:layout_marginBottom="@dimen/_2sdp"
+    app:cardCornerRadius="8dp"
+    android:elevation="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_3sdp">
+
+
+        <TextView
+            android:id="@+id/textFoodOrderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Food Order ID"
+            android:textColor="#575757"
+            android:fontFamily="@font/quicksand_semi_bold"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/_2sdp"/>
+
+
+        <TextView
+            android:id="@+id/textTanggalOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tanggal"
+            android:fontFamily="@font/quicksand_semi_bold"
+            app:layout_constraintTop_toTopOf="@id/textFoodOrderId"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="@dimen/_12ssp"/>
+
+        <TextView
+            android:id="@+id/textTotalPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#575757"
+            android:fontFamily="@font/quicksand_semi_bold"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintTop_toBottomOf="@+id/textFoodOrderId"
+            app:layout_constraintLeft_toLeftOf="@id/textFoodOrderId"
+            android:text="Total Payment"/>
+
+        <TextView
+            android:id="@+id/textStatusPayment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#636363"
+            android:fontFamily="@font/quicksand_semi_bold"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintTop_toBottomOf="@+id/textTotalPayment"
+            app:layout_constraintLeft_toLeftOf="@id/textTotalPayment"
+            android:text="Status Payment"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

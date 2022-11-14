@@ -95,7 +95,7 @@ public class DaftarDokterActivity extends AppCompatActivity {
                                         String linkLinkedIn = users.getString("linkLinkedIn");
                                         String shortBiography = users.getString("shortBiography");
                                         String fee = users.getString("fee");
-                                        String doctorPhoto = NetworkState.locatedStorage+"/doctor/"+ users.getString("foodPhoto");
+                                        String doctorPhoto = NetworkState.locatedStorage+"/doctor/"+ users.getString("doctorPhoto");
                                         String status = users.getString("status");
 
                                         DoctorModel dataItem = new DoctorModel();

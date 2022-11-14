@@ -14,6 +14,7 @@ import com.rigadev.nutricapps.R;
 import com.rigadev.nutricapps.databinding.AdapterDoctorBinding;
 import com.rigadev.nutricapps.databinding.AdapterFoodBinding;
 import com.rigadev.nutricapps.listener.ItemClickListener;
+import com.rigadev.nutricapps.listener.ItemDoctorClickListener;
 import com.rigadev.nutricapps.model.DoctorModel;
 import com.rigadev.nutricapps.model.FoodModel;
 import com.rigadev.nutricapps.util.MyConfig;
@@ -26,7 +27,7 @@ public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.ViewHolder
     public Context context;
     private final List<DoctorModel> loc ;
 
-    private ItemClickListener clickListener;
+    private ItemDoctorClickListener clickListener;
 
     public AdapterDoctor(Context context, List<DoctorModel> loc) {
 
@@ -34,7 +35,7 @@ public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.ViewHolder
         this.loc = loc;
     }
 
-    public void setClickListener(ItemClickListener itemClickListener) {
+    public void setDoctorClickListener(ItemDoctorClickListener itemClickListener) {
         this.clickListener = itemClickListener;
     }
 
@@ -60,7 +61,7 @@ public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.ViewHolder
         viewHolder.binding.cardFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (clickListener != null) clickListener.onClick(v, position);
+                if (clickListener != null) clickListener.onDoctorClick(v, position);
             }
         });
     }
