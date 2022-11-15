@@ -18,5 +18,7 @@ public class NetworkState {
 
     public static String diaryApiUrl = baseUrl+"api/diary/";
 
+    public static String nutririonApiUrl = baseUrl+"api/nutrition/";
+
 
 }

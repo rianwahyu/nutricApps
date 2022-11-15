@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rigadev.nutricapps.databinding.AdapterMyactivityBinding;
 import com.rigadev.nutricapps.databinding.AdapterPlateBinding;
 import com.rigadev.nutricapps.listener.ItemClickListener;
 import com.rigadev.nutricapps.model.MyActivityModel;
@@ -35,7 +36,7 @@ public class AdapterMyActivity extends RecyclerView.Adapter<RecyclerView.ViewHol
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ViewHolderRow(AdapterPlateBinding.inflate(LayoutInflater.from(viewGroup.getContext()),
+        return new ViewHolderRow(AdapterMyactivityBinding.inflate(LayoutInflater.from(viewGroup.getContext()),
                 viewGroup, false));
     }
 
@@ -59,9 +60,9 @@ public class AdapterMyActivity extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public class ViewHolderRow extends RecyclerView.ViewHolder {
-        AdapterPlateBinding binding;
+        AdapterMyactivityBinding binding;
 
-        public ViewHolderRow(AdapterPlateBinding binding) {
+        public ViewHolderRow(AdapterMyactivityBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

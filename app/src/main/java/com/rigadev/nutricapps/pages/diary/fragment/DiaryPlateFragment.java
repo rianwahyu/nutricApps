@@ -1,5 +1,6 @@
 package com.rigadev.nutricapps.pages.diary.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ import com.android.volley.toolbox.Volley;
 import com.rigadev.nutricapps.adapter.AdapterMyPlate;
 import com.rigadev.nutricapps.databinding.FragmentDiaryPlateBinding;
 import com.rigadev.nutricapps.model.MyPlateModel;
+import com.rigadev.nutricapps.pages.diary.MyDiaryAddAktifitasActivity;
+import com.rigadev.nutricapps.pages.diary.MyDiaryAddPiringkuActivity;
 import com.rigadev.nutricapps.util.MyConfig;
 import com.rigadev.nutricapps.util.NetworkState;
 import com.rigadev.nutricapps.util.SessionManager;
@@ -63,6 +66,20 @@ public class DiaryPlateFragment extends Fragment {
         binding.rcPlate.setLayoutManager(linearLayoutManager);
         adapterMyPlate = new AdapterMyPlate(getContext(), listPlate);
         binding.rcPlate.setAdapter(adapterMyPlate);
+        //callPLate();
+
+        binding.btnTambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MyDiaryAddPiringkuActivity.class));
+            }
+        });
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         callPLate();
     }
 
@@ -148,18 +165,21 @@ public class DiaryPlateFragment extends Fragment {
         binding.shimmerPlate.setVisibility(View.VISIBLE);
         binding.rcPlate.setVisibility(View.GONE);
         binding.linearPlateEmpty.setVisibility(View.GONE);
+        binding.btnTambah.setVisibility(View.GONE);
     }
 
     void onFoundFood(){
         binding.shimmerPlate.setVisibility(View.GONE);
         binding.rcPlate.setVisibility(View.VISIBLE);
         binding.linearPlateEmpty.setVisibility(View.GONE);
+        binding.btnTambah.setVisibility(View.VISIBLE);
     }
 
     void onNotFoundFood(){
         binding.shimmerPlate.setVisibility(View.GONE);
         binding.rcPlate.setVisibility(View.GONE);
         binding.linearPlateEmpty.setVisibility(View.VISIBLE);
+        binding.btnTambah.setVisibility(View.VISIBLE);
     }
 
 }

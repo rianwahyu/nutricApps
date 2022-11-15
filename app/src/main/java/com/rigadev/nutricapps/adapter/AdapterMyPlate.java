@@ -46,7 +46,8 @@ public class AdapterMyPlate extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             viewHolders.binding.textFoodName.setText(loc.get(position).getName());
             viewHolders.binding.textKalori.setText(loc.get(position).getCalories() +" kkal");
-            viewHolders.binding.textJumlahPorsi.setText("Tanggal : "+loc.get(position).getDatePlate());
+            viewHolders.binding.textJumlahPorsi.setText("Jumlah Porsi : "+loc.get(position).getPortion());
+            viewHolders.binding.textTanggal.setText("Tanggal : "+loc.get(position).getDatePlate());
 
         }
     }

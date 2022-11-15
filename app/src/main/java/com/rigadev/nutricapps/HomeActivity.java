@@ -29,6 +29,7 @@ import com.rigadev.nutricapps.pages.doctor.DaftarDokterActivity;
 import com.rigadev.nutricapps.pages.doctor.DetailDoctorActivity;
 import com.rigadev.nutricapps.pages.food.DaftarMakananActivity;
 import com.rigadev.nutricapps.pages.food.FoodDetailActivity;
+import com.rigadev.nutricapps.pages.nutrition.CheckNutritionActivity;
 import com.rigadev.nutricapps.util.MyConfig;
 import com.rigadev.nutricapps.util.NetworkState;
 
@@ -93,6 +94,13 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(context, MyDiaryActivity.class));
+            }
+        });
+
+        binding.linearNutritionBottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, CheckNutritionActivity.class));
             }
         });
 

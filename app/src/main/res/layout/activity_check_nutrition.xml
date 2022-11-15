@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pages.doctor.DaftarDokterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_back_white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/textCariDokter"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="Cek Nutrisi"
+            android:fontFamily="@font/quicksand_bold"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="@id/imgBack"
+            app:layout_constraintBottom_toBottomOf="@id/imgBack"
+            app:layout_constraintLeft_toRightOf="@+id/imgBack"
+            android:textSize="@dimen/_23ssp"
+            android:gravity="center"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/imgBack"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/shape_top_rounded"
+            android:layout_marginTop="@dimen/_20sdp">
+
+
+            <TextView
+                android:id="@+id/titleCariDokter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/imgDoctor"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Ayo cek nutrisi dalam tubuhmu!"
+                android:fontFamily="@font/quicksand_bold"
+                android:textSize="@dimen/_20ssp"
+                android:textColor="#575757"/>
+
+            <TextView
+                android:id="@+id/subTitleCariDokter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/titleCariDokter"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/imgDoctor"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Cek Status gizi dan lihat hasilmu"
+                android:fontFamily="@font/quicksand_medium"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="#575757"/>
+
+            <ImageView
+                android:id="@+id/imgDoctor"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_90sdp"
+                android:src="@drawable/ic_cek_nutrition_page"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_8sdp"/>
+
+            <LinearLayout
+                android:id="@+id/linearFormNutrition"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/subTitleCariDokter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:visibility="gone">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@color/background"
+                        android:padding="@dimen/_5sdp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:text="Tanggal Pengecekan"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_8sdp"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etTanggalPengecekan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/input_shape_white"
+                            android:hint="Tanggal Hari ini"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:inputType="text"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:text="Nama"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_5sdp"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNamaLengkap"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/input_shape_white"
+                            android:hint="Nama Lengkap"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:inputType="text"
+                            android:focusable="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:text="Umur"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_5sdp"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etUmu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/input_shape_white"
+                            android:hint="Umur(tahun)"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:inputType="text"
+                            android:focusable="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:text="Berat Badan"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_5sdp"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etBeratBadan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/input_shape_white"
+                            android:hint="Berat Badan(kg)"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:inputType="number"
+                            android:focusable="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:text="Tinggi Badan"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_5sdp"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etTinggiBadan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/input_shape_white"
+                            android:hint="Tinggi Badan(cm)"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:inputType="number"
+                            android:focusable="true"/>
+
+
+                        <TextView
+                            android:id="@+id/btnKirim"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kirim"
+                            android:background="@drawable/button_shape_activity"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_16ssp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:layout_marginTop="@dimen/_30sdp"
+                            android:paddingBottom="@dimen/_3sdp"
+                            android:paddingLeft="@dimen/_3sdp"
+                            android:paddingRight="@dimen/_3sdp"
+                            android:visibility="visible"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearFormResultNutrition"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/subTitleCariDokter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:visibility="visible">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@color/background"
+                        android:padding="@dimen/_5sdp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:text="Tanggal Pengecekan"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_8sdp"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textTanggalPengecekanResult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_text_result_nutrition"
+                            android:hint="Tanggal Hari ini"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:inputType="text"
+                            android:focusable="false"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:text="Nama"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_5sdp"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textNamaLengkapResult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_text_result_nutrition"
+                            android:hint="Nama Lengkap"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:inputType="text"
+                            android:focusable="true"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:text="Hasil IMT"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_5sdp"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textImtResult"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_text_result_nutrition"
+                            android:hint="IMT"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:inputType="text"
+                            android:focusable="true"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:text="Hasil Pengecekan"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_5sdp"/>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            app:cardCornerRadius="8dp"
+                            android:elevation="5dp"
+                            app:cardElevation="5dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:background="@color/white"
+                                android:padding="@dimen/_5sdp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="2"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_weight="2"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/quicksand_medium"
+                                            android:text="Berat Badan"
+                                            android:textSize="@dimen/_12ssp"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/quicksand_medium"
+                                            android:text=" : "
+                                            android:textSize="@dimen/_12ssp"/>
+
+                                        <TextView
+                                            android:id="@+id/textBeratBadanResult"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="2"
+                                            android:layout_height="wrap_content"
+                                            android:text="0 kg"
+                                            android:fontFamily="@font/quicksand_medium"
+                                            android:textColor="#575757"
+                                            android:textSize="@dimen/_12ssp"/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_weight="2"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/quicksand_medium"
+                                            android:text="Tinggi Badan"
+                                            android:textSize="@dimen/_12ssp"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/quicksand_medium"
+                                            android:text=" : "
+                                            android:textSize="@dimen/_12ssp"/>
+
+                                        <TextView
+                                            android:id="@+id/textTinggiBadanResult"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="2"
+                                            android:layout_height="wrap_content"
+                                            android:text="0 cm"
+                                            android:fontFamily="@font/quicksand_medium"
+                                            android:textColor="#575757"
+                                            android:textSize="@dimen/_12ssp"/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_weight="2"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/quicksand_medium"
+                                            android:text="Umur"
+                                            android:textSize="@dimen/_12ssp"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/quicksand_medium"
+                                            android:text=" : "
+                                            android:textSize="@dimen/_12ssp"/>
+
+                                        <TextView
+                                            android:id="@+id/textUmurResult"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="2"
+                                            android:layout_height="wrap_content"
+                                            android:text="0 "
+                                            android:fontFamily="@font/quicksand_medium"
+                                            android:textColor="#575757"
+                                            android:textSize="@dimen/_12ssp"/>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
+                                    android:text="31,25"
+                                    android:fontFamily="@font/quicksand_bold"
+                                    android:textColor="#575757"
+                                    android:textSize="@dimen/_32ssp"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"/>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+
+                       <!-- <TextView
+                            android:id="@+id/btnKirim"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kirim"
+                            android:background="@drawable/button_shape_activity"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_16ssp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:layout_marginTop="@dimen/_30sdp"
+                            android:paddingBottom="@dimen/_3sdp"
+                            android:paddingLeft="@dimen/_3sdp"
+                            android:paddingRight="@dimen/_3sdp"
+                            android:visibility="visible"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            />-->
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
