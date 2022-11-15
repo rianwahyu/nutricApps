@@ -148,25 +148,20 @@ public class DetailDoctorActivity extends AppCompatActivity {
                     String message = jsonObject.getString("message");
                     if (success == true){
 
-                        String idConsultation = jsonObject.getString("idConsultation");
 
-                        new AestheticDialog.Builder(
-                                DetailDoctorActivity.this,
-                                DialogStyle.EMOTION,
-                                DialogType.SUCCESS)
-                                .setTitle("Sukses Membuat Janji")
-                                .setMessage(message)
-                                .show();
+                        MyConfig.showToast(context, message);
+                        String idConsultation = jsonObject.getString("idConsultation");
+                        Intent intent = new Intent(context, DoctorPaymentDetailActivity.class);
+                        intent.putExtra("idConsultation", idConsultation);
+                        intent.putExtra("fee", String.valueOf(fee));
+                        startActivity(intent);
+                        finish();
 
                         /*Handler handler = new Handler();
                         Runnable runnable = new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(context, FoodPaymentDetailActivity.class);
-                                intent.putExtra("foodOrderID", foodOrderID);
-                                intent.putExtra("fee", String.valueOf(fee));
-                                startActivity(intent);
-                                finish();
+
                             }
                         };
                         handler.postDelayed(runnable, 2000);*/

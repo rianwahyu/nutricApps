@@ -17,19 +17,24 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.rigadev.nutricapps.adapter.AdapterBlog;
 import com.rigadev.nutricapps.adapter.AdapterDoctor;
 import com.rigadev.nutricapps.adapter.AdapterFood;
 import com.rigadev.nutricapps.databinding.ActivityHomeBinding;
+import com.rigadev.nutricapps.listener.ItemBlogClickListener;
 import com.rigadev.nutricapps.listener.ItemClickListener;
 import com.rigadev.nutricapps.listener.ItemDoctorClickListener;
+import com.rigadev.nutricapps.model.BlogModel;
 import com.rigadev.nutricapps.model.DoctorModel;
 import com.rigadev.nutricapps.model.FoodModel;
+import com.rigadev.nutricapps.pages.blog.BlogDetailActivity;
 import com.rigadev.nutricapps.pages.diary.MyDiaryActivity;
 import com.rigadev.nutricapps.pages.doctor.DaftarDokterActivity;
 import com.rigadev.nutricapps.pages.doctor.DetailDoctorActivity;
 import com.rigadev.nutricapps.pages.food.DaftarMakananActivity;
 import com.rigadev.nutricapps.pages.food.FoodDetailActivity;
 import com.rigadev.nutricapps.pages.nutrition.CheckNutritionActivity;
+import com.rigadev.nutricapps.pages.profile.MyProfileActivity;
 import com.rigadev.nutricapps.util.MyConfig;
 import com.rigadev.nutricapps.util.NetworkState;
 
@@ -42,17 +47,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HomeActivity extends AppCompatActivity implements ItemClickListener, ItemDoctorClickListener {
+public class HomeActivity extends AppCompatActivity implements ItemClickListener, ItemDoctorClickListener, ItemBlogClickListener {
 
     Context context = this;
 
     ActivityHomeBinding binding;
 
-    LinearLayoutManager linearLayutFood, linearLayutDoctor;
+    LinearLayoutManager linearLayutFood, linearLayutDoctor, linearLayoutBlog;
     List<FoodModel> listFood = new ArrayList<>();
     AdapterFood adapterFood;
     List<DoctorModel> listDoctor = new ArrayList<DoctorModel>();
     AdapterDoctor adapterDoctor;
+    List<BlogModel> listBlog = new ArrayList<BlogModel>();
+    AdapterBlog adapterBlog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +111,14 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
             }
         });
 
+        binding.linearMyProfileBottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, MyProfileActivity.class));
+            }
+        });
+
+
     }
 
     private void initRC() {
@@ -124,13 +139,23 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
         binding.rcDokter.setAdapter(adapterDoctor);
         adapterDoctor.setDoctorClickListener(this);
         callDoctor();
+
+
+        listBlog = new ArrayList<BlogModel>();
+        binding.rcBlog.setHasFixedSize(true);
+        linearLayoutBlog = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        binding.rcBlog.setLayoutManager(linearLayoutBlog);
+        adapterBlog = new AdapterBlog(context, listBlog);
+        binding.rcBlog.setAdapter(adapterBlog);
+        adapterBlog.setBlogClickListener(this);
+        callBlog();
     }
 
 
     public void callFood(){
         listFood.clear();
         voidOnLoadFood();
-        String url = NetworkState.foodApiUrl+"getFood.php" ;
+        String url = NetworkState.foodApiUrl+"getFoodHome.php" ;
         RequestQueue mRequestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
                 new com.android.volley.Response.Listener<String>() {
@@ -231,7 +256,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
     public void callDoctor(){
         listDoctor.clear();
         voidOnLoadDoctor();
-        String url = NetworkState.doctorApiUrl+"getDoctor.php" ;
+        String url = NetworkState.doctorApiUrl+"getDoctorHome.php" ;
         RequestQueue mRequestQueue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
                 new com.android.volley.Response.Listener<String>() {
@@ -326,6 +351,95 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
         binding.linearDokterEmpty.setVisibility(View.VISIBLE);
     }
 
+    public void callBlog(){
+        listBlog.clear();
+        voidOnLoadBlog();
+        String url = NetworkState.blogApiUrl+"getBlog.php" ;
+        RequestQueue mRequestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("category", response);
+                        if(!response.isEmpty()){
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                boolean success = jsonObject.getBoolean("success");
+                                String message = jsonObject.getString("message");
+                                if (success == true){
+                                    onFoundBlog();
+                                    String data = jsonObject.getString("data");
+                                    JSONArray jsonarray=new JSONArray(data);
+                                    for(int i=0;i<jsonarray.length();i++) {
+                                        JSONObject users = jsonarray.getJSONObject(i);
+
+                                        String blogID = users.getString("blogID");
+                                        String titleBlog = users.getString("titleBlog");
+                                        String shortDesciprion = users.getString("shortDesciprion");
+                                        String urlBlog = users.getString("urlBlog");
+                                        String imageBlog = NetworkState.locatedStorage+"/blog/"+ users.getString("imageBlog");
+
+                                        BlogModel dataItem = new BlogModel();
+                                        dataItem.setBlogID(blogID);
+                                        dataItem.setTitleBlog(titleBlog);
+                                        dataItem.setShortDescription(shortDesciprion);
+                                        dataItem.setUrlBlog(urlBlog);
+                                        dataItem.setImageBlog(imageBlog);
+                                        listBlog.add(dataItem);
+                                    }
+                                    adapterBlog.notifyDataSetChanged();
+                                }else{
+                                    onNotFoundBlog();
+                                    MyConfig.showToast(context, message);
+                                }
+
+                            } catch (JSONException e) {
+                                onNotFoundBlog();
+                                Log.e("catchException",e.toString());
+                                e.printStackTrace();
+                            }
+                        }
+                        else {
+                            Log.e("error","Empty Response");
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                return params;
+            }
+        };
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        mRequestQueue.add(stringRequest);
+    }
+
+    void voidOnLoadBlog(){
+        binding.shimmerBlog.setVisibility(View.VISIBLE);
+        binding.rcBlog.setVisibility(View.GONE);
+        binding.linearBlogEmpty.setVisibility(View.GONE);
+    }
+
+    void onFoundBlog(){
+        binding.shimmerBlog.setVisibility(View.GONE);
+        binding.rcBlog.setVisibility(View.VISIBLE);
+        binding.linearBlogEmpty.setVisibility(View.GONE);
+    }
+
+    void onNotFoundBlog(){
+        binding.shimmerBlog.setVisibility(View.GONE);
+        binding.rcBlog.setVisibility(View.GONE);
+        binding.linearBlogEmpty.setVisibility(View.VISIBLE);
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -365,5 +479,17 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
         intent.putExtra("fee", dm.getFee());
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onBlogClick(View view, int position) {
+        BlogModel bm = listBlog.get(position);
+
+        Intent intent = new Intent(context, BlogDetailActivity.class);
+        intent.putExtra("blogID", bm.getBlogID());
+        intent.putExtra("titleBlog", bm.getTitleBlog());
+        intent.putExtra("shortDesciprion", bm.getShortDescription());
+        intent.putExtra("urlBlog", bm.getUrlBlog());
+        startActivity(intent);
     }
 }

@@ -14,11 +14,15 @@ public class NetworkState {
 
     public static String doctorApiUrl = baseUrl+"api/doctor/";
 
+    public static String blogApiUrl = baseUrl+"api/blog/";
+
     public static String otherApiUrl = baseUrl+"api/other/";
 
     public static String diaryApiUrl = baseUrl+"api/diary/";
 
     public static String nutririonApiUrl = baseUrl+"api/nutrition/";
+
+    public static String profileApiUrl = baseUrl+"api/profile/";
 
 
 }

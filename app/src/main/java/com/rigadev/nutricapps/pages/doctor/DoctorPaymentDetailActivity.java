@@ -1,4 +1,4 @@
-package com.rigadev.nutricapps.pages.food;
+package com.rigadev.nutricapps.pages.doctor;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -25,7 +25,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,14 +49,14 @@ import com.hbisoft.pickit.PickiTCallbacks;
 import com.rigadev.nutricapps.HomeActivity;
 import com.rigadev.nutricapps.R;
 import com.rigadev.nutricapps.database.RetrofitInterface;
-import com.rigadev.nutricapps.databinding.ActivityFoodPaymentDetailBinding;
+import com.rigadev.nutricapps.databinding.ActivityDoctorPaymentDetailBinding;
 import com.rigadev.nutricapps.model.PaymentMethodModel;
+import com.rigadev.nutricapps.pages.food.FoodPaymentDetailActivity;
 import com.rigadev.nutricapps.util.MyConfig;
 import com.rigadev.nutricapps.util.NetworkState;
 import com.thecode.aestheticdialogs.AestheticDialog;
 import com.thecode.aestheticdialogs.DialogStyle;
 import com.thecode.aestheticdialogs.DialogType;
-import com.thecode.aestheticdialogs.OnDialogClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,13 +81,11 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class FoodPaymentDetailActivity extends AppCompatActivity implements PickiTCallbacks {
+public class DoctorPaymentDetailActivity extends AppCompatActivity implements PickiTCallbacks {
 
     Context context = this;
-    ActivityFoodPaymentDetailBinding binding;
+    ActivityDoctorPaymentDetailBinding binding;
 
-
-    String foodOrderID = "", totalPayment="";
     List<PaymentMethodModel> listPayment = new ArrayList<PaymentMethodModel>();
 
     String idPaymentMethod="", name="", type="", account="";
@@ -106,11 +103,19 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
     int bitmap_size = 100;
     int max_resolution_image = 1024;
 
+
+    String fee, idConsultation ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityFoodPaymentDetailBinding.inflate(getLayoutInflater());
+        binding = ActivityDoctorPaymentDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+        idConsultation = getIntent().getStringExtra("idConsultation");
+        fee = getIntent().getStringExtra("fee");
+
 
         ProgressLoadingJIGB.setupLoading = (setup) ->  {
             setup.srcLottieJson = com.forms.sti.progresslitieigb.R.raw.loader; // Tour Source JSON Lottie
@@ -121,9 +126,6 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
         };
 
 
-        foodOrderID = getIntent().getStringExtra("foodOrderID");
-        totalPayment = getIntent().getStringExtra("totalPayment");
-
         binding.toolbar.setTitle("Detail Pembayaran");
         binding.toolbar.setNavigationIcon(R.drawable.ic_back_white);
         binding.toolbar.setTitleTextColor(Color.WHITE);
@@ -131,8 +133,8 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
 
         listPayment = new ArrayList<>();
 
-        binding.textOrderId.setText(foodOrderID);
-        binding.textTotalPayment.setText("Rp. "+ MyConfig.formatNumberComma(totalPayment));
+        binding.textOrderId.setText(idConsultation);
+        binding.textTotalPayment.setText("Rp. "+ MyConfig.formatNumberComma(fee));
 
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,8 +151,8 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
                 selectPdf();
             }
         });
-        pickiT = new PickiT(this, this, this);
 
+        pickiT = new PickiT(this, this, this);
 
         binding.btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,32 +160,7 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
                 checkForm();
             }
         });
-    }
 
-    private void checkForm() {
-        if (idPaymentMethod.isEmpty()|| idPaymentMethod.equals("")){
-            MyConfig.showToast(context, "Mohon memilih metode pembayaran");
-        }else if (pathPDF.equals("")|| pathPDF.isEmpty()){
-            MyConfig.showToast(context, "Mohon melampirkan bukti pembayaran");
-        }else {
-            processUpload();
-        }
-    }
-
-
-    private boolean checkSelfPermission() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-                PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.READ_EXTERNAL_STORAGE},
-                    PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE);
-            return false;
-        }
-        return true;
     }
 
     private void getPaymentMethod() {
@@ -316,11 +293,21 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-        finish();
+    private boolean checkSelfPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE);
+            return false;
+        }
+        return true;
     }
+
 
     ProgressBar mProgressBar;
     TextView percentText;
@@ -512,11 +499,21 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
+    private void checkForm() {
+        if (idPaymentMethod.isEmpty()|| idPaymentMethod.equals("")){
+            MyConfig.showToast(context, "Mohon memilih metode pembayaran");
+        }else if (pathPDF.equals("")|| pathPDF.isEmpty()){
+            MyConfig.showToast(context, "Mohon melampirkan bukti pembayaran");
+        }else {
+            processUpload();
+        }
+    }
+
 
     private void processUpload() {
         ProgressLoadingJIGB.startLoading(context);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitInterface.urlActivity)
+                .baseUrl(RetrofitInterface.urlDoctor)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
@@ -529,9 +526,9 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
                 requestBody);
 
         RetrofitInterface getResponse = retrofit.create(RetrofitInterface.class);
-        Call<String> call = getResponse.uploadProofPayment(
+        Call<String> call = getResponse.uploadProofPaymentDoctor(
                 fileToUpload,
-                foodOrderID,
+                idConsultation,
                 idPaymentMethod);
         call.enqueue(new Callback<String>() {
             @Override
@@ -551,7 +548,7 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
 
                     }else {
                         new AestheticDialog.Builder(
-                                FoodPaymentDetailActivity.this,
+                                DoctorPaymentDetailActivity.this,
                                 DialogStyle.EMOTION,
                                 DialogType.ERROR)
                                 .setTitle("Error")
@@ -566,11 +563,17 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
             public void onFailure(Call call, Throwable t) {
                 Log.d("gttt", call.toString());
                 ProgressLoadingJIGB.finishLoadingJIGB(context);
-                new AestheticDialog.Builder(FoodPaymentDetailActivity.this, DialogStyle.EMOTION, DialogType.ERROR)
+                new AestheticDialog.Builder(DoctorPaymentDetailActivity.this, DialogStyle.EMOTION, DialogType.ERROR)
                         .setTitle("Error")
                         .setMessage(call.toString())
                         .show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        startActivity(new Intent(context, HomeActivity.class));
     }
 }

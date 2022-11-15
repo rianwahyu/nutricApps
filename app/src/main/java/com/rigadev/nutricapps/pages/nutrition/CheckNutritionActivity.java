@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,9 +19,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.forms.sti.progresslitieigb.ProgressLoadingJIGB;
-import com.rigadev.nutricapps.R;
 import com.rigadev.nutricapps.databinding.ActivityCheckNutritionBinding;
-import com.rigadev.nutricapps.pages.diary.MyDiaryAddAktifitasActivity;
+import com.rigadev.nutricapps.pages.doctor.DaftarDokterActivity;
+import com.rigadev.nutricapps.pages.food.DaftarMakananActivity;
 import com.rigadev.nutricapps.util.MyConfig;
 import com.rigadev.nutricapps.util.NetworkState;
 import com.rigadev.nutricapps.util.SessionManager;
@@ -137,6 +138,16 @@ public class CheckNutritionActivity extends AppCompatActivity {
                         MyConfig.showToast(context, message);
                         //onBackPressed();
                         clearForm();
+                        String nama = jsonObject.getString("nama");
+                        String tanggalPengecekan = jsonObject.getString("tanggalPengecekan");
+                        String umur = jsonObject.getString("umur");
+                        String berat = jsonObject.getString("berat");
+                        String tinggi = jsonObject.getString("tinggi");
+                        String imt = jsonObject.getString("imt");
+                        String ketentuanImt = jsonObject.getString("ketentuanImt");
+                        String keteranganKetentuanImt = jsonObject.getString("keteranganKetentuanImt");
+
+                        onLoadLinearResult(tanggalPengecekan, nama, umur, berat, tinggi, imt, ketentuanImt, keteranganKetentuanImt);
                     }else {
                         new AestheticDialog.Builder(
                                 CheckNutritionActivity.this,
@@ -186,6 +197,35 @@ public class CheckNutritionActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
         stringRequest.setRetryPolicy(policy);
         mRequestQueue.add(stringRequest);
+    }
+
+    private void onLoadLinearResult(String tanggalPengecekan, String nama, String umur, String berat, String tinggi, String imt, String ketentuanImt, String keteranganKetentuanImt) {
+        binding.linearFormNutrition.setVisibility(View.GONE);
+        binding.linearFormResultNutrition.setVisibility(View.VISIBLE);
+        binding.textTanggalPengecekanResult.setText(tanggalPengecekan);
+        binding.textNamaLengkapResult.setText(nama);
+        binding.textImtResult.setText(imt);
+        binding.textBeratBadanResult.setText(berat +" kg");
+        binding.textTinggiBadanResult.setText(tinggi+" cm");
+        binding.textUmurResult.setText(umur +" tahun");
+        binding.textImtResult2.setText(imt);
+        binding.textKetentuanImt.setText(ketentuanImt);
+        binding.textKeteranganKetentuanImt.setText(keteranganKetentuanImt);
+
+        binding.btnCariDokter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, DaftarDokterActivity.class));
+            }
+        });
+
+
+        binding.btnCariMakananSehat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, DaftarMakananActivity.class));
+            }
+        });
     }
 
     private void clearForm() {

@@ -223,29 +223,15 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
                     boolean success = jsonObject.getBoolean("success");
                     String message = jsonObject.getString("message");
                     if (success == true){
-
+                        sqLiteHelpers.deleteCartAll();
+                        MyConfig.showToast(context, message);
                         String foodOrderID = jsonObject.getString("foodOrderID");
 
-                        new AestheticDialog.Builder(
-                                CartFoodActivity.this,
-                                DialogStyle.EMOTION,
-                                DialogType.SUCCESS)
-                                .setTitle("Sukses Order")
-                                .setMessage(message)
-                                .show();
-
-                        Handler handler = new Handler();
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                Intent intent = new Intent(context, FoodPaymentDetailActivity.class);
-                                intent.putExtra("foodOrderID", foodOrderID);
-                                intent.putExtra("totalPayment", String.valueOf(sumTotalValue));
-                                startActivity(intent);
-                                finish();
-                            }
-                        };
-                        handler.postDelayed(runnable, 2000);
+                        Intent intent = new Intent(context, FoodPaymentDetailActivity.class);
+                        intent.putExtra("foodOrderID", foodOrderID);
+                        intent.putExtra("totalPayment", String.valueOf(sumTotalValue));
+                        startActivity(intent);
+                        finish();
 
                     }else {
                         new AestheticDialog.Builder(

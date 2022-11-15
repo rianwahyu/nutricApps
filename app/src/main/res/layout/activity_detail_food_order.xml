@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pages.doctor.DaftarDokterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_back_white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/textCariDokter"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="Detail Order"
+            android:fontFamily="@font/quicksand_bold"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="@id/imgBack"
+            app:layout_constraintBottom_toBottomOf="@id/imgBack"
+            app:layout_constraintLeft_toRightOf="@+id/imgBack"
+            android:textSize="@dimen/_23ssp"
+            android:gravity="center"/>
+
+
+        <ImageView
+            android:id="@+id/imgHistory"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_history_48px"
+            app:layout_constraintTop_toTopOf="@+id/textCariDokter"
+            app:layout_constraintBottom_toBottomOf="@+id/textCariDokter"
+            app:layout_constraintRight_toRightOf="parent"
+            app:tint="@color/white"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:clickable="true"
+            android:visibility="gone"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/imgBack"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/shape_top_rounded"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <TextView
+                android:id="@+id/subTitleCariDokter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Detail riwayar order makanan yang kamu pesan"
+                android:fontFamily="@font/quicksand_medium"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="#575757"/>
+
+
+            <LinearLayout
+                android:id="@+id/linearHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintTop_toBottomOf="@+id/subTitleCariDokter"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_4sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Order ID"
+                        android:fontFamily="@font/quicksand_medium"
+                        android:textColor="#4B6855"
+                        android:textSize="@dimen/_14ssp"/>
+
+                    <TextView
+                        android:id="@+id/textOrderId"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:fontFamily="@font/quicksand_medium"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp"
+                        android:gravity="end"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Tanggal Order"
+                        android:fontFamily="@font/quicksand_medium"
+                        android:textColor="#4B6855"
+                        android:textSize="@dimen/_14ssp"/>
+
+                    <TextView
+                        android:id="@+id/textTanggalOrder"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:fontFamily="@font/quicksand_medium"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp"
+                        android:gravity="end"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Status Pesanan"
+                        android:fontFamily="@font/quicksand_medium"
+                        android:textColor="#4B6855"
+                        android:textSize="@dimen/_14ssp"/>
+
+                    <TextView
+                        android:id="@+id/textStatusPayment"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:fontFamily="@font/quicksand_medium"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp"
+                        android:gravity="end"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Jumlah Pembayaran"
+                        android:fontFamily="@font/quicksand_medium"
+                        android:textColor="#4B6855"
+                        android:textSize="@dimen/_14ssp"/>
+
+                    <TextView
+                        android:id="@+id/textTotalPayment"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:fontFamily="@font/quicksand_medium"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp"
+                        android:gravity="end"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcMakanan"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/linearHeader"
+                app:layout_constraintBottom_toTopOf="@+id/linearFooter"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:visibility="visible"/>
+
+            <LinearLayout
+                android:id="@+id/linearFooter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/rcMakanan"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAksi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Simpan"
+                    android:background="@drawable/rectangle_login_button"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    app:backgroundTint="#575757"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/quicksand_bold"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

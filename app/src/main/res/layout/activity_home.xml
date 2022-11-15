@@ -108,7 +108,6 @@
                         android:textSize="@dimen/_8ssp"
                         android:textColor="#4B6855"/>
 
-
                     <TextView
                         android:id="@+id/textKaloriDiKeluarkan"
                         android:layout_width="60dp"
@@ -331,7 +330,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/titleDaftarDokter"
+                            android:id="@+id/titleDaftarBlog"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
@@ -344,8 +343,7 @@
                             android:textSize="@dimen/_11ssp"
                             android:textColor="#4B6855"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_marginLeft="@dimen/_4sdp"
-                            />
+                            android:layout_marginLeft="@dimen/_4sdp" />
 
                         <TextView
                             android:id="@+id/textLihatSemuaDokter"
@@ -439,44 +437,137 @@
 
                 </LinearLayout>
 
+
             </androidx.cardview.widget.CardView>
 
 
 
-
-            <TextView
-                android:id="@+id/titleDaftarBlog"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardBlog"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/cardDokter"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:text="Daftar Konten"
-                android:textAlignment="center"
-                android:fontFamily="@font/quicksand_semi_bold"
-                android:textSize="@dimen/_10ssp"
-                android:textColor="#4B6855"
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_10sdp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcBlog"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/titleDaftarBlog"
-                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginRight="@dimen/_8sdp"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_50sdp"
+                app:cardCornerRadius="@dimen/_4sdp">
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/shimmerBlog"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/titleDaftarBlog"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginLeft="@dimen/_8sdp"
-                android:layout_marginRight="@dimen/_8sdp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/titleDaftarDokter"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@+id/cardCalories"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:text="Blog Kami"
+                            android:textAlignment="textStart"
+                            android:fontFamily="@font/quicksand_semi_bold"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/_11ssp"
+                            android:textColor="#4B6855"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginLeft="@dimen/_4sdp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:text="Lihat Semua"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/_10ssp"
+                            android:textColor="#4B6855"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_4sdp"
+                            android:clickable="true"
+                            android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcBlog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/titleDaftarDokter"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:visibility="gone"/>
+
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerBlog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_2sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginBottom="@dimen/_2sdp">
+
+                            <include layout="@layout/placholder_adapter_blog"/>
+
+                            <include layout="@layout/placholder_adapter_blog"/>
+
+                            <include layout="@layout/placholder_adapter_blog"/>
+
+                            <include layout="@layout/placholder_adapter_blog"/>
+
+                            <include layout="@layout/placholder_adapter_blog"/>
+
+
+                        </LinearLayout>
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/linearBlogEmpty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_2sdp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/warning_48px"
+                            android:layout_gravity="center"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Data tidak ditemukan"
+                            android:fontFamily="@font/quicksand_light"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -609,6 +700,7 @@
 
 
             <LinearLayout
+                android:id="@+id/linearMyProfileBottom"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"

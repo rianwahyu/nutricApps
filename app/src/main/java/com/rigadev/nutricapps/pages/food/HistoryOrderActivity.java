@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -172,6 +173,13 @@ public class HistoryOrderActivity extends AppCompatActivity implements ItemClick
 
         HistoryFoodModel hfm = listFood.get(position);
 
+        Intent intent = new Intent(context, DetailFoodOrderActivity.class);
+        intent.putExtra("foodOrderID", hfm.getFoodOrderID());
+        intent.putExtra("statusPayment", hfm.getStatusPayment());
+        intent.putExtra("dateOrder", hfm.getDateOrder());
+        intent.putExtra("totalPayment", hfm.getTotalPayment());
+        intent.putExtra("name", hfm.getName());
+        startActivity(intent);
 
     }
 }

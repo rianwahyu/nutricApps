@@ -29,6 +29,34 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".pages.blog.BlogDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".pages.food.DetailFoodOrderActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".pages.doctor.DoctorPaymentDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".pages.profile.EditMyProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".pages.nutrition.CheckNutritionActivity"
             android:exported="false">
             <meta-data
@@ -106,7 +134,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".pages.MyProfileActivity"
+            android:name=".pages.profile.MyProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

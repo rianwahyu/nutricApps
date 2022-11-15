@@ -98,7 +98,7 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -173,7 +173,7 @@
                             android:layout_marginTop="@dimen/_2sdp"
                             android:paddingLeft="@dimen/_5sdp"
                             android:paddingRight="@dimen/_5sdp"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:focusable="true"/>
 
                         <TextView
@@ -258,7 +258,7 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginRight="@dimen/_5sdp"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -471,6 +471,7 @@
                                 </LinearLayout>
 
                                 <TextView
+                                    android:id="@+id/textImtResult2"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="match_parent"
@@ -486,25 +487,110 @@
                         </androidx.cardview.widget.CardView>
 
 
-
-                       <!-- <TextView
-                            android:id="@+id/btnKirim"
-                            android:layout_width="wrap_content"
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Kirim"
-                            android:background="@drawable/button_shape_activity"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            app:cardCornerRadius="8dp"
+                            android:elevation="5dp"
+                            app:cardElevation="5dp"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:background="@color/white"
+                                android:padding="@dimen/_5sdp">
+
+
+                                <TextView
+                                    android:id="@+id/textKetentuanImt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/quicksand_bold"
+                                    android:gravity="center"
+                                    android:text=">27,0 = Kelebihan Gizi"
+                                    android:textColor="#575757"
+                                    android:textSize="@dimen/_20ssp" />
+
+                                <TextView
+                                    android:id="@+id/textKeteranganKetentuanImt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Kamu terindikasi overweight, atur pola makanmu  dan terus olahraga teratur untuk mencapai tubuh ideal. Ayo semangat!!! "
+                                    android:fontFamily="@font/quicksand_regular"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:textColor="#575757"
+                                    android:layout_marginTop="@dimen/_2sdp"/>
+
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                        <Button
+                            android:id="@+id/btnCariMakananSehat"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:text="Cari Makanan Sehat"
                             android:fontFamily="@font/quicksand_bold"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_16ssp"
-                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:textSize="@dimen/_18ssp"
                             android:layout_marginTop="@dimen/_30sdp"
-                            android:paddingBottom="@dimen/_3sdp"
-                            android:paddingLeft="@dimen/_3sdp"
-                            android:paddingRight="@dimen/_3sdp"
                             android:visibility="visible"
                             android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            />-->
+                            android:backgroundTint="#4B6855"
+                            android:textAllCaps="false"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/line_custom"
+                                android:layout_gravity="center_vertical"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" atau "
+                                android:fontFamily="@font/quicksand_regular"
+                                android:textColor="@color/black"
+                                android:layout_gravity="center_vertical"/>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/line_custom"
+                                android:layout_gravity="center_vertical"/>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnCariDokter"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:text="Cari Dokter"
+                            android:fontFamily="@font/quicksand_bold"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_18ssp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:visibility="visible"
+                            android:layout_gravity="center_horizontal"
+                            android:backgroundTint="#4B6855"
+                            android:textAllCaps="false"/>
+
 
                     </LinearLayout>
 
