@@ -98,6 +98,10 @@ public class DaftarDokterActivity extends AppCompatActivity {
                                         String doctorPhoto = NetworkState.locatedStorage+"/doctor/"+ users.getString("doctorPhoto");
                                         String status = users.getString("status");
 
+                                        String practicePlace = users.getString("practicePlace");
+                                        String dayPractice = users.getString("dayPractice");
+                                        String timePractice = users.getString("timePractice");
+
                                         DoctorModel dataItem = new DoctorModel();
                                         dataItem.setIdDoctor(idDoctor);
                                         dataItem.setFullname(fullname);
@@ -108,6 +112,9 @@ public class DaftarDokterActivity extends AppCompatActivity {
                                         dataItem.setShortBiography(shortBiography);
                                         dataItem.setFee(fee);
                                         dataItem.setDoctorPhoto(doctorPhoto);
+                                        dataItem.setPracticePlace(practicePlace);
+                                        dataItem.setDayPractice(dayPractice);
+                                        dataItem.setTimePractice(timePractice);
                                         listDoctor.add(dataItem);
                                     }
                                     adapterDoctor.notifyDataSetChanged();

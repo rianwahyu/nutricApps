@@ -20,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.rigadev.nutricapps.MainActivity;
 import com.rigadev.nutricapps.R;
 import com.rigadev.nutricapps.databinding.ActivityLoginBinding;
 import com.rigadev.nutricapps.databinding.ActivityMyProfileBinding;
@@ -71,6 +72,9 @@ public class MyProfileActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
+                        new SessionManager(context).logOut();
+                        startActivity(new Intent(context, MainActivity.class));
+                        finish();
                     }
                 });
 

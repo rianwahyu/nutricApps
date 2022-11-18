@@ -136,47 +136,6 @@
                             android:textSize="@dimen/_14ssp"
                             android:layout_marginTop="@dimen/_8sdp"/>
 
-                        <LinearLayout
-                            android:id="@+id/linearMetodePembayaran"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="@dimen/_8sdp"
-                            android:clickable="true"
-                            android:foreground="?attr/selectableItemBackground">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/_2sdp">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="wrap_content"
-                                    android:text="Metode Pembayaran"
-                                    android:fontFamily="@font/quicksand_medium"
-                                    android:textColor="#4B6855"
-                                    android:gravity="center_vertical"
-                                    android:textSize="@dimen/_12ssp"/>
-
-                                <ImageView
-                                    android:layout_width="@dimen/_10sdp"
-                                    android:layout_height="@dimen/_10sdp"
-                                    android:src="@drawable/ic_left_24px"
-                                    android:layout_marginLeft="@dimen/_10sdp"
-                                    android:layout_gravity="center_vertical"/>
-
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/line_custom"
-                                android:layout_marginTop="@dimen/_3sdp"/>
-
-                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/linearPesananSaya"

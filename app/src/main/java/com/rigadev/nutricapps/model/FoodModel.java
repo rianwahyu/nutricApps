@@ -2,7 +2,7 @@ package com.rigadev.nutricapps.model;
 
 public class FoodModel {
     String idFood, idMerchant, foodName, ingredient, nutrition,
-            calories, flavoring, expired, price, foodPhoto, status;
+            calories, flavoring, expired, price, foodPhoto, status, remark;
 
 
     public FoodModel() {
@@ -95,5 +95,13 @@ public class FoodModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

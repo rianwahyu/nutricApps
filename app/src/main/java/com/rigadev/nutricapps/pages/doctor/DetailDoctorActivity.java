@@ -220,7 +220,6 @@ public class DetailDoctorActivity extends AppCompatActivity {
 
     private void showDateDialog() {
         Calendar newCalendar = Calendar.getInstance();
-
         datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -231,6 +230,11 @@ public class DetailDoctorActivity extends AppCompatActivity {
 
                 binding.etDate.setText(dateFormatter.format(newDate.getTime()));
                 tglJanji = dateFormatter.format(newDate.getTime());
+
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE", Locale.US);
+                String dayName= MyConfig.convertDayNameToIndo(simpleDateFormat.format(newDate.getTime())) ;
+                Log.d("Doctor", "Date Name :" + dayName);
+                binding.etDayName.setText(dayName);
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));

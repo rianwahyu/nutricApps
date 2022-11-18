@@ -112,4 +112,11 @@ public class SQLiteHelpers extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_DATA_NOTIFICATION, null, values);
     }
+
+    public Cursor getNotification() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cur = db.rawQuery("SELECT * FROM " + TABLE_DATA_NOTIFICATION + " " +
+                "WHERE 1 ", null);
+        return cur;
+    }
 }

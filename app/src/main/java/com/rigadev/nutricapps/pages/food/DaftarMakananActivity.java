@@ -110,6 +110,8 @@ public class DaftarMakananActivity extends AppCompatActivity implements ItemClic
                                         String price = users.getString("price");
                                         String foodPhoto = NetworkState.locatedStorage+"/food/"+ users.getString("foodPhoto");
                                         String status = users.getString("status");
+                                        String remark = users.getString("remark");
+
 
                                         FoodModel dataItem = new FoodModel();
                                         dataItem.setIdFood(idFood);
@@ -123,6 +125,7 @@ public class DaftarMakananActivity extends AppCompatActivity implements ItemClic
                                         dataItem.setPrice(price);
                                         dataItem.setFoodPhoto(foodPhoto);
                                         dataItem.setStatus(status);
+                                        dataItem.setRemark(remark);
                                         listFood.add(dataItem);
                                     }
                                     adapterFood.notifyDataSetChanged();

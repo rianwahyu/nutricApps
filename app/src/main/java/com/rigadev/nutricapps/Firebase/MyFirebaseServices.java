@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.rigadev.nutricapps.R;
 import com.rigadev.nutricapps.SplashSceenActivity;
+import com.rigadev.nutricapps.database.SQLiteHelpers;
 
 
 import java.util.Map;
@@ -34,6 +36,9 @@ public class MyFirebaseServices extends FirebaseMessagingService {
     private static final String ACTION_DESTINATION = "action_destination";
     private static final String TYPE = "type";
     private static final String STATUS = "status";
+    private static final String DATE = "date";
+
+    SQLiteHelpers sqLiteHelpers =  new SQLiteHelpers(getApplication());
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -84,6 +89,7 @@ public class MyFirebaseServices extends FirebaseMessagingService {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleData(Map<String, String> data) {
+        sqLiteHelpers = new SQLiteHelpers(getApplication());
         String title = data.get(TITLE);
         String message = data.get(MESSAGE);
         String iconUrl = data.get(IMAGE);
@@ -91,6 +97,14 @@ public class MyFirebaseServices extends FirebaseMessagingService {
         String actionDestination = data.get(ACTION_DESTINATION);
         String type = data.get(TYPE);
         String status = data.get(STATUS);
+        String date = data.get(DATE);
+
+        ContentValues cv = new ContentValues();
+        cv.put(SQLiteHelpers.NOTIFICATION_NAME, title);
+        cv.put(SQLiteHelpers.NOTIFICATION_CONTENT, message);
+        cv.put(SQLiteHelpers.NOTIFICATION_DATE, date);
+        cv.put(SQLiteHelpers.NOTIFICATION_READ, "0");
+        sqLiteHelpers.insertNotification(cv);
 
         NotificationModel notificationModelVO = new NotificationModel();
         notificationModelVO.setTitle(title);

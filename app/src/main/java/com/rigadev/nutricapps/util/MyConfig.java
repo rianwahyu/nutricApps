@@ -216,6 +216,28 @@ public class MyConfig {
         return date;
     }
 
+    public static String convertDayNameToIndo(String s){
+        String hariIndo="";
+        if (s.equals("Sunday")){
+            hariIndo= "Minggu";
+        }else if (s.equals("Monday")){
+            hariIndo= "Senin";
+        }else if (s.equals("Tuesday")){
+            hariIndo= "Selasa";
+        }else if (s.equals("Wednesday")){
+            hariIndo= "Rabu";
+        }else if (s.equals("Thursday")){
+            hariIndo= "Kamis";
+        }else if (s.equals("Friday")){
+            hariIndo= "Jumat";
+        }else if (s.equals("Saturday")){
+            hariIndo= "Sabtu";
+        }
+
+        return hariIndo;
+
+    }
+
     public static boolean isNetworkConnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 

@@ -2,7 +2,7 @@ package com.rigadev.nutricapps.model;
 
 public class DoctorModel {
     String idDoctor, fullname, phoneNumber, specialist, linkInstagram,
-            linkLinkedIn, shortBiography, fee, doctorPhoto;
+            linkLinkedIn, shortBiography, fee, doctorPhoto, practicePlace, dayPractice, timePractice  ;
 
     public DoctorModel() {
     }
@@ -77,5 +77,29 @@ public class DoctorModel {
 
     public void setDoctorPhoto(String doctorPhoto) {
         this.doctorPhoto = doctorPhoto;
+    }
+
+    public String getPracticePlace() {
+        return practicePlace;
+    }
+
+    public void setPracticePlace(String practicePlace) {
+        this.practicePlace = practicePlace;
+    }
+
+    public String getDayPractice() {
+        return dayPractice;
+    }
+
+    public void setDayPractice(String dayPractice) {
+        this.dayPractice = dayPractice;
+    }
+
+    public String getTimePractice() {
+        return timePractice;
+    }
+
+    public void setTimePractice(String timePractice) {
+        this.timePractice = timePractice;
     }
 }

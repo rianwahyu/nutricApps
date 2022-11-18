@@ -225,6 +225,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                         String price = users.getString("price");
                                         String foodPhoto = NetworkState.locatedStorage+"/food/"+ users.getString("foodPhoto");
                                         String status = users.getString("status");
+                                        String remark = users.getString("remark");
 
                                         FoodModel dataItem = new FoodModel();
                                         dataItem.setIdFood(idFood);
@@ -238,6 +239,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                         dataItem.setPrice(price);
                                         dataItem.setFoodPhoto(foodPhoto);
                                         dataItem.setStatus(status);
+                                        dataItem.setRemark(remark);
                                         listFood.add(dataItem);
                                     }
                                     adapterFood.notifyDataSetChanged();
@@ -326,6 +328,11 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                         String doctorPhoto = NetworkState.locatedStorage+"/doctor/"+ users.getString("doctorPhoto");
                                         String status = users.getString("status");
 
+                                        String practicePlace = users.getString("practicePlace");
+                                        String dayPractice = users.getString("dayPractice");
+                                        String timePractice = users.getString("timePractice");
+
+
                                         DoctorModel dataItem = new DoctorModel();
                                         dataItem.setIdDoctor(idDoctor);
                                         dataItem.setFullname(fullname);
@@ -336,6 +343,10 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                         dataItem.setShortBiography(shortBiography);
                                         dataItem.setFee(fee);
                                         dataItem.setDoctorPhoto(doctorPhoto);
+                                        dataItem.setPracticePlace(practicePlace);
+                                        dataItem.setDayPractice(dayPractice);
+                                        dataItem.setTimePractice(timePractice);
+
                                         listDoctor.add(dataItem);
                                     }
                                     adapterDoctor.notifyDataSetChanged();
