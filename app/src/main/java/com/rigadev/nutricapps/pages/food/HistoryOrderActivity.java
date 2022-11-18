@@ -97,6 +97,7 @@ public class HistoryOrderActivity extends AppCompatActivity implements ItemClick
                                         String idUser = users.getString("idUser");
                                         String paymentmethod = users.getString("paymentmethod");
                                         String name = users.getString("name");
+                                        String ketStatus = users.getString("ketStatus");
 
 
                                         HistoryFoodModel dataItem = new HistoryFoodModel();
@@ -107,6 +108,7 @@ public class HistoryOrderActivity extends AppCompatActivity implements ItemClick
                                         dataItem.setIdUser(idUser);
                                         dataItem.setPaymentmethod(paymentmethod);
                                         dataItem.setName(name);
+                                        dataItem.setKetStatus(ketStatus);
                                         listFood.add(dataItem);
                                     }
                                     adapterHistoryFood.notifyDataSetChanged();
@@ -179,6 +181,7 @@ public class HistoryOrderActivity extends AppCompatActivity implements ItemClick
         intent.putExtra("dateOrder", hfm.getDateOrder());
         intent.putExtra("totalPayment", hfm.getTotalPayment());
         intent.putExtra("name", hfm.getName());
+        intent.putExtra("ketStatus", hfm.getKetStatus());
         startActivity(intent);
 
     }

@@ -22,7 +22,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:background="@color/background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,17 +31,46 @@
             android:layout_marginBottom="@dimen/_10sdp">
 
             <TextView
-                android:id="@+id/titleKeranjang"
+                android:id="@+id/titleAlamatPengiriman"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Daftar makanan yang dipilih"
+                android:text="Alamat Pengiriman"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginLeft="@dimen/_3sdp"
                 android:fontFamily="@font/quicksand_bold"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_14ssp"
+                />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAlamatPengiriman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_shape_white"
+                android:hint="Masukkan alamat pengiriman"
+                android:fontFamily="@font/quicksand_medium"
+                android:layout_marginTop="@dimen/_2sdp"
+                app:layout_constraintTop_toBottomOf="@+id/titleAlamatPengiriman"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:inputType="textMultiLine"
+                android:textSize="@dimen/_12ssp"/>
+
+            <TextView
+                android:id="@+id/titleKeranjang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daftar makanan yang dipilih"
+                app:layout_constraintTop_toBottomOf="@+id/etAlamatPengiriman"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:fontFamily="@font/quicksand_bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -111,14 +141,15 @@
                         android:layout_height="wrap_content"
                         android:text="Konfirmasi Pesanan"
                         android:gravity="center"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="@dimen/_15ssp"
                         android:padding="@dimen/_5sdp"
                         android:background="@color/primary"
                         android:clickable="true"
                         android:foreground="?attr/selectableItemBackground"
                         android:fontFamily="@font/quicksand_bold"
                         android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_4sdp"/>
+                        android:layout_marginTop="@dimen/_4sdp"
+                        />
 
                 </LinearLayout>
 

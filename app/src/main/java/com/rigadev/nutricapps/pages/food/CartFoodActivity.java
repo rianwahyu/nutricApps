@@ -109,7 +109,6 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
         binding.rcCart.setAdapter(adapterCart);
         adapterCart.setDecreaseClickListener(this);
         adapterCart.setIncreaseClickListener(this);
-
     }
 
     @Override
@@ -286,6 +285,7 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
                 params.put("idUser", new SessionManager(context).getIdUser());
                 params.put("totalPayment", String.valueOf(sumTotalValue));
                 params.put("cartList", cartList);
+                params.put("deliveryAddress", binding.etAlamatPengiriman.getText().toString());
                 return params;
             }
         };

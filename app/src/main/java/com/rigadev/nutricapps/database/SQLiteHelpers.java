@@ -10,11 +10,11 @@ import androidx.annotation.Nullable;
 
 public class SQLiteHelpers extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "nutric_apps";
 
-
     private static final String TABLE_DATA_CART ="cart";
+    private static final String TABLE_DATA_NOTIFICATION ="notification";
 
     public static final String CART_ID = "id";
     public static final String CART_IDFOOD = "idFood";
@@ -22,6 +22,12 @@ public class SQLiteHelpers extends SQLiteOpenHelper {
     public static final String CART_PHOTO = "photo";
     public static final String CART_QTY = "qty";
     public static final String CART_PRICE = "price";
+
+    public static final String NOTIFICATION_ID = "id";
+    public static final String NOTIFICATION_NAME = "name";
+    public static final String NOTIFICATION_CONTENT = "content";
+    public static final String NOTIFICATION_DATE = "dateNotification";
+    public static final String NOTIFICATION_READ = "readNotification";
 
     private static final String CREATE_TABLE_CART = " CREATE TABLE "
             + TABLE_DATA_CART + "(" + CART_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -31,6 +37,13 @@ public class SQLiteHelpers extends SQLiteOpenHelper {
             + CART_QTY + " INTEGER,"
             + CART_PRICE + " INTEGER " + ")";
 
+    private static final String CREATE_TABLE_NOTIFICATION = " CREATE TABLE "
+            + TABLE_DATA_NOTIFICATION + "(" + NOTIFICATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + NOTIFICATION_NAME + " TEXT, "
+            + NOTIFICATION_CONTENT + " TEXT, "
+            + NOTIFICATION_DATE + " TEXT, "
+            + NOTIFICATION_READ + " NUMERIC " + ")";
+
     public SQLiteHelpers(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -38,11 +51,13 @@ public class SQLiteHelpers extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_CART);
+        db.execSQL(CREATE_TABLE_NOTIFICATION);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(" DROP TABLE IF EXISTS " + TABLE_DATA_CART);
+        db.execSQL(" DROP TABLE IF EXISTS " + TABLE_DATA_NOTIFICATION);
         onCreate(db);
     }
 
@@ -91,5 +106,10 @@ public class SQLiteHelpers extends SQLiteOpenHelper {
         }
         nb = cursor.getString(0);
         return nb;
+    }
+
+    public void insertNotification(ContentValues values) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_DATA_NOTIFICATION, null, values);
     }
 }

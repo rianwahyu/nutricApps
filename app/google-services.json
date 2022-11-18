@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "372675968445-e0kn20t5ffafj8htddhg7iudipnvduur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rigadev.nutricapps",
+            "certificate_hash": "6a7d8b850357c53da9e96ffab85af40cf5e29002"
+          }
+        },
+        {
           "client_id": "372675968445-s1bn0pv6qmign1h3ji48rf0s0s5lilfq.apps.googleusercontent.com",
           "client_type": 3
         }

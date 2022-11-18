@@ -3,6 +3,7 @@ package com.rigadev.nutricapps;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.rigadev.nutricapps.adapter.AdapterBlog;
 import com.rigadev.nutricapps.adapter.AdapterDoctor;
 import com.rigadev.nutricapps.adapter.AdapterFood;
@@ -37,6 +39,7 @@ import com.rigadev.nutricapps.pages.nutrition.CheckNutritionActivity;
 import com.rigadev.nutricapps.pages.profile.MyProfileActivity;
 import com.rigadev.nutricapps.util.MyConfig;
 import com.rigadev.nutricapps.util.NetworkState;
+import com.rigadev.nutricapps.util.SessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,6 +64,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
     List<BlogModel> listBlog = new ArrayList<BlogModel>();
     AdapterBlog adapterBlog;
 
+    @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +122,43 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
             }
         });
 
+        String uid = FirebaseInstanceId.getInstance().getId();
+        String token= FirebaseInstanceId.getInstance().getToken();
+        Log.d("Token", "uid :" +uid);
+        Log.d("Token", "token :" +token);
+        updateToken(uid, token);
 
+    }
+
+    private void updateToken(String uid, String token) {
+        String url = NetworkState.otherApiUrl+"updateTokenFirebase.php" ;
+        RequestQueue mRequestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("idUser", new SessionManager(context).getIdUser());
+                params.put("uid", uid);
+                params.put("token", token);
+                return params;
+            }
+        };
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        mRequestQueue.add(stringRequest);
     }
 
     private void initRC() {

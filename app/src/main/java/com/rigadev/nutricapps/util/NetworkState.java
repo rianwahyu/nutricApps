@@ -24,5 +24,4 @@ public class NetworkState {
 
     public static String profileApiUrl = baseUrl+"api/profile/";
 
-
 }

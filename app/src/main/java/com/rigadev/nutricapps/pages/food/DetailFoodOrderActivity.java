@@ -43,8 +43,7 @@ public class DetailFoodOrderActivity extends AppCompatActivity {
     Context context = this;
     ActivityDetailFoodOrderBinding binding;
 
-    String foodOrderID, statusPayment, dateOrder, totalPayment, name;
-
+    String foodOrderID, statusPayment, dateOrder, totalPayment, name, ketStatus;
     LinearLayoutManager linearLayoutManager;
     List<OrderFoodDetailModel> listOrder = new ArrayList<OrderFoodDetailModel>();
     AdapteOrderDetail adapteOrderDetail;
@@ -61,6 +60,7 @@ public class DetailFoodOrderActivity extends AppCompatActivity {
         dateOrder = getIntent().getStringExtra("dateOrder");
         totalPayment = getIntent().getStringExtra("totalPayment");
         name = getIntent().getStringExtra("name");
+        ketStatus = getIntent().getStringExtra("ketStatus");
 
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +73,7 @@ public class DetailFoodOrderActivity extends AppCompatActivity {
         binding.textStatusPayment.setText(statusPayment);
         binding.textTanggalOrder.setText(dateOrder);
         binding.textTotalPayment.setText("Rp. "+MyConfig.formatNumberComma(totalPayment));
-
+        binding.textKetStatus.setText(ketStatus);
 
         listOrder = new ArrayList<OrderFoodDetailModel>();
         binding.rcMakanan.setHasFixedSize(true);
@@ -83,9 +83,8 @@ public class DetailFoodOrderActivity extends AppCompatActivity {
         binding.rcMakanan.setAdapter(adapteOrderDetail);
         callOrder();
 
-
         if (statusPayment.equals("Pending")){
-            binding.btnAksi.setText("Bayar Order");
+            binding.btnAksi.setText("Bayar Pesanan");
             binding.btnAksi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

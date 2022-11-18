@@ -94,12 +94,12 @@ public class FoodDetailActivity extends AppCompatActivity {
                 .setTitle("Sukses")
                 .setMessage("Berhasil menambahkan makanan ke keranjang")
                 .show();
+        onResume();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         checkCart();
     }
 

@@ -2,7 +2,7 @@ package com.rigadev.nutricapps.model;
 
 public class HistoryFoodModel {
     String foodOrderID, dateOrder, totalPayment, statusPayment,
-            idUser, paymentmethod, name;
+            idUser, paymentmethod, name, ketStatus;
 
     public HistoryFoodModel() {
     }
@@ -61,6 +61,15 @@ public class HistoryFoodModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public String getKetStatus() {
+        return ketStatus;
+    }
+
+    public void setKetStatus(String ketStatus) {
+        this.ketStatus = ketStatus;
     }
 }
 
