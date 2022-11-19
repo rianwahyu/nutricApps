@@ -45,6 +45,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.forms.sti.progresslitieigb.ProgressLoadingJIGB;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.hbisoft.pickit.PickiT;
 import com.hbisoft.pickit.PickiTCallbacks;
 import com.rigadev.nutricapps.HomeActivity;
@@ -532,7 +533,8 @@ public class FoodPaymentDetailActivity extends AppCompatActivity implements Pick
         Call<String> call = getResponse.uploadProofPayment(
                 fileToUpload,
                 foodOrderID,
-                idPaymentMethod);
+                idPaymentMethod,
+                FirebaseInstanceId.getInstance().getToken());
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call,

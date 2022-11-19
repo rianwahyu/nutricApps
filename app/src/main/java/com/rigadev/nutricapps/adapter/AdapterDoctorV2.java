@@ -59,7 +59,7 @@ public class AdapterDoctorV2 extends RecyclerView.Adapter<AdapterDoctorV2.ViewHo
                 .apply(new RequestOptions().placeholder(R.drawable.food_placeholder).error(R.drawable.food_placeholder))
                 .into(viewHolder.binding.imgDoctor);
 
-        viewHolder.binding.cardDoctor.setOnClickListener(new View.OnClickListener() {
+        viewHolder.binding.btnBuatJanji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (clickListener != null) clickListener.onDoctorClick(v, position);

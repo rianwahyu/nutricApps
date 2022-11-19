@@ -26,6 +26,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.forms.sti.progresslitieigb.ProgressLoadingJIGB;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.rigadev.nutricapps.HomeActivity;
 import com.rigadev.nutricapps.LoginActivity;
 import com.rigadev.nutricapps.R;
@@ -286,6 +288,7 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
                 params.put("totalPayment", String.valueOf(sumTotalValue));
                 params.put("cartList", cartList);
                 params.put("deliveryAddress", binding.etAlamatPengiriman.getText().toString());
+                params.put("token", FirebaseInstanceId.getInstance().getToken());
                 return params;
             }
         };

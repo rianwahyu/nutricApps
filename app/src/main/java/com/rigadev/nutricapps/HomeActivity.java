@@ -35,6 +35,7 @@ import com.rigadev.nutricapps.pages.doctor.DaftarDokterActivity;
 import com.rigadev.nutricapps.pages.doctor.DetailDoctorActivity;
 import com.rigadev.nutricapps.pages.food.DaftarMakananActivity;
 import com.rigadev.nutricapps.pages.food.FoodDetailActivity;
+import com.rigadev.nutricapps.pages.notification.NotifikasiActivity;
 import com.rigadev.nutricapps.pages.nutrition.CheckNutritionActivity;
 import com.rigadev.nutricapps.pages.profile.MyProfileActivity;
 import com.rigadev.nutricapps.util.MyConfig;
@@ -122,13 +123,95 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
             }
         });
 
+        binding.imgNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, NotifikasiActivity.class));
+            }
+        });
+
         String uid = FirebaseInstanceId.getInstance().getId();
         String token= FirebaseInstanceId.getInstance().getToken();
         Log.d("Token", "uid :" +uid);
         Log.d("Token", "token :" +token);
         updateToken(uid, token);
 
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCalculateCalories();
+    }
+
+    void getCalculateCalories(){
+        String url = NetworkState.otherApiUrl+"getCalculateDailyCalories.php" ;
+        RequestQueue mRequestQueue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
+                new com.android.volley.Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("category", response);
+                        if(!response.isEmpty()){
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                boolean success = jsonObject.getBoolean("success");
+                                String message = jsonObject.getString("message");
+                                if (success == true){
+
+                                    String data = jsonObject.getString("data");
+                                    JSONArray jsonarray=new JSONArray(data);
+                                    for(int i=0;i<jsonarray.length();i++) {
+                                        JSONObject users = jsonarray.getJSONObject(i);
+
+                                        String kaloriDibutuhkan = users.getString("kaloriDibutuhkan");
+                                        String kaloriKeluar = users.getString("kaloriKeluar");
+                                        String kaloriMasuk = users.getString("kaloriMasuk");
+                                        String imt = users.getString("imt");
+                                        String perbandingan = users.getString("perbandingan");
+
+                                        binding.textKaloriDibutuhkan.setText(kaloriDibutuhkan+"\nkkal");
+                                        binding.textKaloriDiKeluarkan.setText(kaloriKeluar+"\nkkal");
+                                        binding.textKaloriMasuk.setText(kaloriMasuk+"\nkkal");
+                                        binding.textSisaKalori.setText(perbandingan);
+                                        binding.textImt.setText(imt);
+                                    }
+
+                                }else{
+
+                                    MyConfig.showToast(context, message);
+                                }
+
+                            } catch (JSONException e) {
+                                Log.e("catchException",e.toString());
+                                e.printStackTrace();
+                            }
+                        }
+                        else {
+                            Log.e("error","Empty Response");
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("idUser", new SessionManager(context).getIdUser());
+                return params;
+            }
+        };
+        int socketTimeout = 30000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(policy);
+        mRequestQueue.add(stringRequest);
+    }
+
 
     private void updateToken(String uid, String token) {
         String url = NetworkState.otherApiUrl+"updateTokenFirebase.php" ;
@@ -226,6 +309,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                         String foodPhoto = NetworkState.locatedStorage+"/food/"+ users.getString("foodPhoto");
                                         String status = users.getString("status");
                                         String remark = users.getString("remark");
+                                        String address = users.getString("address");
 
                                         FoodModel dataItem = new FoodModel();
                                         dataItem.setIdFood(idFood);
@@ -240,6 +324,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                         dataItem.setFoodPhoto(foodPhoto);
                                         dataItem.setStatus(status);
                                         dataItem.setRemark(remark);
+                                        dataItem.setAddress(address);
                                         listFood.add(dataItem);
                                     }
                                     adapterFood.notifyDataSetChanged();
@@ -510,6 +595,8 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
         intent.putExtra("expired", fm.getExpired());
         intent.putExtra("price", fm.getPrice());
         intent.putExtra("foodPhoto", fm.getFoodPhoto());
+        intent.putExtra("remark", fm.getRemark());
+        intent.putExtra("address", fm.getAddress());
         startActivity(intent);
 
     }
@@ -528,6 +615,10 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
         intent.putExtra("linkInstagram", dm.getLinkInstagram());
         intent.putExtra("linkLinkedIn", dm.getLinkLinkedIn());
         intent.putExtra("fee", dm.getFee());
+        intent.putExtra("dayPractice", dm.getDayPractice());
+        intent.putExtra("timePractice", dm.getTimePractice());
+        intent.putExtra("practicePlace", dm.getPracticePlace());
+
         startActivity(intent);
 
     }

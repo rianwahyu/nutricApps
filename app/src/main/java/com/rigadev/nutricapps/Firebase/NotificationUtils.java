@@ -20,6 +20,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 
 import com.rigadev.nutricapps.R;
+import com.rigadev.nutricapps.pages.notification.NotifikasiActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,8 +44,9 @@ public class NotificationUtils {
         this.mContext = mContext;
         //Populate activity map
         /*activityMap.put("Home", MainActivity.class);
-        activityMap.put("merchant", RiwayatPesananActivity.class);
+
         activityMap.put("kasir", HomeKasirActivity.class);*/
+        activityMap.put("notifikasi", NotifikasiActivity.class);
     }
 
     PendingIntent resultPendingIntent;

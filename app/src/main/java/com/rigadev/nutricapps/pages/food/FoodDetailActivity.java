@@ -25,7 +25,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     ActivityFoodDetailBinding binding;
 
     String idFood="", foodName="", ingredient="", nutrition="", calories="",
-            flavoring="", expired="", price="", foodPhoto="";
+            flavoring="", expired="", price="", foodPhoto="", remark="", address="";
 
     SQLiteHelpers sqLiteHelpers;
 
@@ -46,6 +46,8 @@ public class FoodDetailActivity extends AppCompatActivity {
         expired = getIntent().getStringExtra("expired");
         price = getIntent().getStringExtra("price");
         foodPhoto = getIntent().getStringExtra("foodPhoto");
+        address = getIntent().getStringExtra("address");
+        remark = getIntent().getStringExtra("remark");
 
         binding.toolbar.setTitle("Detail Makanan");
         binding.toolbar.setNavigationIcon(R.drawable.ic_back_white);
@@ -64,11 +66,21 @@ public class FoodDetailActivity extends AppCompatActivity {
                 .apply(new RequestOptions().placeholder(R.drawable.food_placeholder).error(R.drawable.food_placeholder))
                 .into(binding.imgMenu);
 
+        if (remark.equals("")) remark="-";
+        if (nutrition.equals("")) nutrition="-";
+        if (ingredient.equals("")) ingredient="-";
+        if (flavoring.equals("")) flavoring="-";
+        if (calories.equals("")) calories="-";
+        if (address.equals("")) address="-";
+
         binding.textNamaMenu.setText(foodName);
-        binding.textDeskripsi.setText(ingredient);
+        binding.textDeskripsi.setText(remark);
         binding.textNutrisi.setText(nutrition);
         binding.textKalori.setText(calories);
+        binding.textKomposisi.setText(ingredient);
+        binding.textBahanPenyedap.setText(flavoring);
         binding.textHarga.setText(MyConfig.formatNumberComma(price));
+        binding.textAddressFood.setText(address);
 
         binding.btnTambahCart.setOnClickListener(new View.OnClickListener() {
             @Override

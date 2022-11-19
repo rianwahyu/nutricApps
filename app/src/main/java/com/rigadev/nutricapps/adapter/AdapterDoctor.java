@@ -57,6 +57,7 @@ public class AdapterDoctor extends RecyclerView.Adapter<AdapterDoctor.ViewHolder
                 .load(loc.get(position).getDoctorPhoto())
                 .apply(new RequestOptions().placeholder(R.drawable.food_placeholder).error(R.drawable.food_placeholder))
                 .into(viewHolder.binding.imgFood);
+        viewHolder.binding.textHarga.setText("Biaya Konsultasi \nRp. "+ MyConfig.formatNumberComma(loc.get(position).getFee()) );
 
         viewHolder.binding.cardFood.setOnClickListener(new View.OnClickListener() {
             @Override

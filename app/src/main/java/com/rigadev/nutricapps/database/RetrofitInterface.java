@@ -24,7 +24,8 @@ public interface RetrofitInterface {
     Call<String> uploadProofPayment(
             @Part MultipartBody.Part fileupload,
             @Part("foodOrderID") String foodOrderID,
-            @Part("paymentmethod") String paymentmethod
+            @Part("paymentmethod") String paymentmethod,
+            @Part("token") String token
     );
 
     @Multipart
@@ -55,6 +56,7 @@ public interface RetrofitInterface {
     Call<String> uploadProofPaymentDoctor(
             @Part MultipartBody.Part fileupload,
             @Part("idConsultation") String idConsultation,
-            @Part("paymentmethod") String paymentmethod
+            @Part("paymentmethod") String paymentmethod,
+            @Part("token") String token
     );
 }

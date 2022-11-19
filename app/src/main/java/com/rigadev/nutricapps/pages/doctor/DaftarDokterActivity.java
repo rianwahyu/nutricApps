@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.rigadev.nutricapps.R;
 import com.rigadev.nutricapps.adapter.AdapterDoctor;
 import com.rigadev.nutricapps.adapter.AdapterDoctorV2;
 import com.rigadev.nutricapps.databinding.ActivityDaftarDokterBinding;
+import com.rigadev.nutricapps.listener.ItemDoctorClickListener;
 import com.rigadev.nutricapps.model.DoctorModel;
 import com.rigadev.nutricapps.util.MyConfig;
 import com.rigadev.nutricapps.util.NetworkState;
@@ -33,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DaftarDokterActivity extends AppCompatActivity {
+public class DaftarDokterActivity extends AppCompatActivity implements ItemDoctorClickListener {
 
     Context context = this;
     ActivityDaftarDokterBinding binding;
@@ -61,8 +63,16 @@ public class DaftarDokterActivity extends AppCompatActivity {
         binding.rcDokter.setLayoutManager(linearLayoutDoctor);
         adapterDoctor = new AdapterDoctorV2(context, listDoctor);
         binding.rcDokter.setAdapter(adapterDoctor);
-
+        adapterDoctor.setDoctorClickListener(this);
         callDoctor();
+
+        binding.imgHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, HistoryDoctorConsultationActivity.class));
+
+            }
+        });
     }
 
     public void callDoctor(){
@@ -175,5 +185,25 @@ public class DaftarDokterActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    public void onDoctorClick(View view, int position) {
+        DoctorModel dm = listDoctor.get(position);
+
+        Intent intent = new Intent(context, DetailDoctorActivity.class);
+        intent.putExtra("idDoctor", dm.getIdDoctor());
+        intent.putExtra("doctorName", dm.getFullname());
+        intent.putExtra("shortBiography", dm.getShortBiography());
+        intent.putExtra("specialist", dm.getSpecialist());
+        intent.putExtra("doctorPhoto", dm.getDoctorPhoto());
+        intent.putExtra("phoneNumber", dm.getPhoneNumber());
+        intent.putExtra("linkInstagram", dm.getLinkInstagram());
+        intent.putExtra("linkLinkedIn", dm.getLinkLinkedIn());
+        intent.putExtra("fee", dm.getFee());
+        intent.putExtra("dayPractice", dm.getDayPractice());
+        intent.putExtra("timePractice", dm.getTimePractice());
+        intent.putExtra("practicePlace", dm.getPracticePlace());
+        startActivity(intent);
     }
 }

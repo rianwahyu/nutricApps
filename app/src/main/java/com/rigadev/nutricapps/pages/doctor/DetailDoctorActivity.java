@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.forms.sti.progresslitieigb.ProgressLoadingJIGB;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.rigadev.nutricapps.R;
 import com.rigadev.nutricapps.databinding.ActivityDetailDoctorBinding;
 import com.rigadev.nutricapps.pages.food.CartFoodActivity;
@@ -49,7 +50,8 @@ public class DetailDoctorActivity extends AppCompatActivity {
     ActivityDetailDoctorBinding binding;
 
     String idDoctor = "", doctorName="", shortBiography="", specialist="", doctorPhoto="",
-            phoneNumber="", linkInstagram="", linkLinkedIn="", fee="";
+            phoneNumber="", linkInstagram="", linkLinkedIn="", fee="" , dayPractice="" ,
+            timePractice="" , practicePlace="";
 
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
@@ -80,6 +82,9 @@ public class DetailDoctorActivity extends AppCompatActivity {
         linkInstagram = getIntent().getStringExtra("linkInstagram");
         linkLinkedIn = getIntent().getStringExtra("linkLinkedIn");
         fee = getIntent().getStringExtra("fee");
+        dayPractice = getIntent().getStringExtra("dayPractice");
+        timePractice = getIntent().getStringExtra("timePractice");
+        practicePlace = getIntent().getStringExtra("practicePlace");
 
 
         binding.toolbar.setTitle("Detail Dokter");
@@ -99,9 +104,19 @@ public class DetailDoctorActivity extends AppCompatActivity {
                 .apply(new RequestOptions().placeholder(R.drawable.doctor_placeholder).error(R.drawable.food_placeholder))
                 .into(binding.imgDoctor);
 
+        if (doctorName.equals("")) doctorName="-";
+        if (shortBiography.equals("")) shortBiography="-";
+        if (practicePlace.equals("")) practicePlace="-";
+        if (dayPractice.equals("")) dayPractice="-";
+        if (timePractice.equals("")) timePractice="-";
+
+
         binding.textNamaDokter.setText(doctorName);
         binding.textKetDokter.setText(shortBiography);
         binding.textBiaya.setText("Rp." + MyConfig.formatNumberComma(fee) );
+        binding.textTempatPraktek.setText(practicePlace);
+        binding.textHariPraktik.setText(dayPractice);
+        binding.textWaktuPraktik.setText(timePractice);
 
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
@@ -157,15 +172,6 @@ public class DetailDoctorActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
 
-                        /*Handler handler = new Handler();
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-
-                            }
-                        };
-                        handler.postDelayed(runnable, 2000);*/
-
                     }else {
                         new AestheticDialog.Builder(
                                 DetailDoctorActivity.this,
@@ -206,6 +212,7 @@ public class DetailDoctorActivity extends AppCompatActivity {
                 params.put("whatsappNumber", binding.etNoWhatsapp.getText().toString());
                 params.put("fee", fee);
                 params.put("dateConsultation", tglJanji);
+                params.put("token", FirebaseInstanceId.getInstance().getToken());
 
                 return params;
             }
@@ -238,15 +245,12 @@ public class DetailDoctorActivity extends AppCompatActivity {
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-
         datePickerDialog.show();
-
     }
-
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
         finish();
     }
 }

@@ -79,19 +79,70 @@
                 app:layout_constraintLeft_toLeftOf="@id/titleKeterangan"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="10dp"
-                android:text="Keterangan value"
+                android:text="-"
                 tools:ignore="MissingConstraints"
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:textSize="@dimen/_11ssp"/>
 
+            <TextView
+                android:id="@+id/titleKomposisi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textDeskripsi"
+                app:layout_constraintLeft_toLeftOf="@id/textDeskripsi"
+                android:text="Komposisi"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/textKomposisi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/titleKomposisi"
+                app:layout_constraintLeft_toLeftOf="@id/titleKomposisi"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="10dp"
+                android:text="-"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textSize="@dimen/_11ssp"/>
+
+            <TextView
+                android:id="@+id/titleBahanPenyedap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textKomposisi"
+                app:layout_constraintLeft_toLeftOf="@id/textKomposisi"
+                android:text="Bahan Penyedap"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/textBahanPenyedap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/titleBahanPenyedap"
+                app:layout_constraintLeft_toLeftOf="@id/titleBahanPenyedap"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="10dp"
+                android:text="-"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textSize="@dimen/_11ssp"/>
 
 
             <TextView
                 android:id="@+id/titleNutrisi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/textDeskripsi"
-                app:layout_constraintLeft_toLeftOf="@id/textDeskripsi"
+                app:layout_constraintTop_toBottomOf="@id/textBahanPenyedap"
+                app:layout_constraintLeft_toLeftOf="@id/textBahanPenyedap"
                 android:text="Nutrisi"
                 tools:ignore="MissingConstraints"
                 android:fontFamily="@font/quicksand_semi_bold"
@@ -125,6 +176,7 @@
                 android:textColor="@color/black"
                 android:layout_marginTop="5dp"/>
 
+
             <TextView
                 android:id="@+id/textKalori"
                 android:layout_width="0dp"
@@ -138,12 +190,39 @@
                 android:fontFamily="@font/quicksand_semi_bold"
                 android:textSize="@dimen/_11ssp"/>
 
+
             <TextView
-                android:id="@+id/titleHarga"
+                android:id="@+id/titleAddressFood"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/textKalori"
                 app:layout_constraintLeft_toLeftOf="@id/textKalori"
+                android:text="Alamat / Lokasi Makanan"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/textAddressFood"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/titleAddressFood"
+                app:layout_constraintLeft_toLeftOf="@id/titleAddressFood"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="10dp"
+                android:text="-"
+                tools:ignore="MissingConstraints"
+                android:fontFamily="@font/quicksand_semi_bold"
+                android:textSize="@dimen/_11ssp"/>
+
+            <TextView
+                android:id="@+id/titleHarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textAddressFood"
+                app:layout_constraintLeft_toLeftOf="@id/textAddressFood"
                 android:text="Harga"
                 tools:ignore="MissingConstraints"
                 android:fontFamily="@font/quicksand_semi_bold"
@@ -162,7 +241,7 @@
                 android:text="Rp"
                 tools:ignore="MissingConstraints"
                 android:fontFamily="@font/quicksand_semi_bold"
-                android:textSize="@dimen/_13ssp"/>
+                android:textSize="@dimen/_15ssp"/>
 
             <Button
                 android:id="@+id/btnTambahCart"

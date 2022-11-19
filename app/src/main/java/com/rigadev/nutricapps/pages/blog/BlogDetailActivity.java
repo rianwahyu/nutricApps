@@ -55,11 +55,12 @@ public class BlogDetailActivity extends AppCompatActivity {
 
         ProgressLoadingJIGB.setupLoading = (setup) ->  {
             setup.srcLottieJson = com.forms.sti.progresslitieigb.R.raw.loader; // Tour Source JSON Lottie
-            setup.message = "Memuat Data";//  Center Message
+            setup.message = "Memuat Data ";//  Center Message
             setup.timer = 0;   // Time of live for progress.
             setup.width = 200; // Optional
             setup.hight = 200; // Optional
         };
+        ProgressLoadingJIGB.startLoading(context);
 
         binding.webView.setWebViewClient(new WebViewClient(){
             @Override

@@ -119,4 +119,12 @@ public class SQLiteHelpers extends SQLiteOpenHelper {
                 "WHERE 1 ", null);
         return cur;
     }
+
+    public void deleteNotification(String cart_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = " DELETE FROM " + TABLE_DATA_NOTIFICATION + " " +
+                " WHERE " + NOTIFICATION_ID + "='" + cart_id + "' ";
+        db.execSQL(query);
+        db.close();
+    }
 }

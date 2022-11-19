@@ -1,5 +1,6 @@
 package com.rigadev.nutricapps.pages.profile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -20,14 +22,23 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.forms.sti.progresslitieigb.ProgressLoadingJIGB;
 import com.rigadev.nutricapps.MainActivity;
 import com.rigadev.nutricapps.R;
 import com.rigadev.nutricapps.databinding.ActivityLoginBinding;
 import com.rigadev.nutricapps.databinding.ActivityMyProfileBinding;
+import com.rigadev.nutricapps.databinding.DialogDetailNotifikasiBinding;
+import com.rigadev.nutricapps.databinding.DialogFeedbackBinding;
 import com.rigadev.nutricapps.model.DoctorModel;
+import com.rigadev.nutricapps.pages.food.HistoryOrderActivity;
+import com.rigadev.nutricapps.pages.notification.NotifikasiActivity;
 import com.rigadev.nutricapps.util.MyConfig;
 import com.rigadev.nutricapps.util.NetworkState;
 import com.rigadev.nutricapps.util.SessionManager;
+import com.thecode.aestheticdialogs.AestheticDialog;
+import com.thecode.aestheticdialogs.DialogStyle;
+import com.thecode.aestheticdialogs.DialogType;
+import com.thecode.aestheticdialogs.OnDialogClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +52,6 @@ public class MyProfileActivity extends AppCompatActivity {
     Context context = this;
     ActivityMyProfileBinding binding;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +62,13 @@ public class MyProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+        binding.linearPesananSaya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context,HistoryOrderActivity.class));
             }
         });
 
@@ -90,6 +107,112 @@ public class MyProfileActivity extends AppCompatActivity {
         });
 
         getMyName();
+
+        binding.linearFeedBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogFeedBack();
+            }
+        });
+
+        binding.linearNotifikasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, NotifikasiActivity.class));
+            }
+        });
+    }
+
+    DialogFeedbackBinding dialogFeedbackBinding;
+    private void dialogFeedBack() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        dialogFeedbackBinding = DialogFeedbackBinding.inflate(
+                LayoutInflater.from(context));
+        alert.setView(dialogFeedbackBinding.getRoot());
+        alert.create();
+        alert.setTitle("Detail Notifikasi");
+
+        final AlertDialog dialog = alert.create();
+        dialogFeedbackBinding.btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (dialogFeedbackBinding.etFeedBack.getText().toString().isEmpty()){
+                    MyConfig.showToast(context, "Mohon mengisi masukan");
+                }else{
+                    ProgressLoadingJIGB.setupLoading = (setup) ->  {
+                        setup.srcLottieJson = com.forms.sti.progresslitieigb.R.raw.loader; // Tour Source JSON Lottie
+                        setup.message = "Mengirimkan masukan";//  Center Message
+                        setup.timer = 0;   // Time of live for progress.
+                        setup.width = 200; // Optional
+                        setup.hight = 200; // Optional
+                    };
+                    ProgressLoadingJIGB.startLoading(context);
+                    String url = NetworkState.otherApiUrl+"addFeedBack.php" ;
+                    RequestQueue mRequestQueue = Volley.newRequestQueue(context);
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
+                            new com.android.volley.Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.d("category", response);
+                                    if(!response.isEmpty()){
+                                        try {
+                                            JSONObject jsonObject = new JSONObject(response);
+                                            boolean success = jsonObject.getBoolean("success");
+                                            String message = jsonObject.getString("message");
+                                            if (success == true){
+                                                ProgressLoadingJIGB.finishLoadingJIGB(context);
+                                                dialog.dismiss();
+                                                new AestheticDialog.Builder(
+                                                        MyProfileActivity.this,
+                                                        DialogStyle.EMOTION,
+                                                        DialogType.SUCCESS)
+                                                        .setTitle("Sukses")
+                                                        .setMessage(message)
+                                                        .setOnClickListener(new OnDialogClickListener() {
+                                                            @Override
+                                                            public void onClick(@NonNull AestheticDialog.Builder builder) {
+                                                                builder.dismiss();
+                                                            }
+                                                        })
+                                                        .setCancelable(true)
+                                                        .show();
+                                            }else{
+                                                ProgressLoadingJIGB.finishLoadingJIGB(context);
+                                            }
+
+                                        } catch (JSONException e) {
+                                            Log.e("catchException",e.toString());
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    else {
+                                        Log.e("error","Empty Response");
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    ProgressLoadingJIGB.finishLoadingJIGB(context);
+                                }
+                            }) {
+                        @Override
+                        protected Map<String, String> getParams() {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("idUser", new SessionManager(context).getIdUser());
+                            params.put("contentFeedBack", dialogFeedbackBinding.etFeedBack.getText().toString());
+                            return params;
+                        }
+                    };
+                    int socketTimeout = 30000;
+                    RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                    stringRequest.setRetryPolicy(policy);
+                    mRequestQueue.add(stringRequest);
+                }
+            }
+        });
+        dialog.show();
     }
 
     private void getMyName() {

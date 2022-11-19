@@ -111,7 +111,7 @@ public class DaftarMakananActivity extends AppCompatActivity implements ItemClic
                                         String foodPhoto = NetworkState.locatedStorage+"/food/"+ users.getString("foodPhoto");
                                         String status = users.getString("status");
                                         String remark = users.getString("remark");
-
+                                        String address = users.getString("address");
 
                                         FoodModel dataItem = new FoodModel();
                                         dataItem.setIdFood(idFood);
@@ -126,6 +126,7 @@ public class DaftarMakananActivity extends AppCompatActivity implements ItemClic
                                         dataItem.setFoodPhoto(foodPhoto);
                                         dataItem.setStatus(status);
                                         dataItem.setRemark(remark);
+                                        dataItem.setAddress(address);
                                         listFood.add(dataItem);
                                     }
                                     adapterFood.notifyDataSetChanged();
@@ -201,6 +202,7 @@ public class DaftarMakananActivity extends AppCompatActivity implements ItemClic
         intent.putExtra("expired", fm.getExpired());
         intent.putExtra("price", fm.getPrice());
         intent.putExtra("foodPhoto", fm.getFoodPhoto());
+        intent.putExtra("address", fm.getAddress());
         startActivity(intent);
     }
 }
