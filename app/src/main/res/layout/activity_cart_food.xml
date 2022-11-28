@@ -57,7 +57,9 @@
                 android:paddingLeft="@dimen/_5sdp"
                 android:paddingRight="@dimen/_5sdp"
                 android:inputType="textMultiLine"
-                android:textSize="@dimen/_12ssp"/>
+                android:textSize="@dimen/_12ssp"
+                android:focusable="false"/>
+
 
             <TextView
                 android:id="@+id/titleKeranjang"

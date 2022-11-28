@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -119,6 +122,37 @@ public class MyProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(context, NotifikasiActivity.class));
+            }
+        });
+
+        binding.linearPusatBantuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://linktr.ee/nutricofficial"));
+                startActivity(browserIntent);
+            }
+        });
+
+        binding.linearKontakDarurat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri mUri = Uri.parse("6282173751862");
+
+                PackageManager packageManager = getPackageManager();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                try {
+                    String text = "Hai Nutric\n";
+                    String url = "https://api.whatsapp.com/send?phone=" + mUri + "&text=" + text;
+                    i.setPackage("com.whatsapp");
+                    i.setData(Uri.parse(url));
+                    if (i.resolveActivity(packageManager) != null) {
+
+                        startActivity(i);
+                    }
+                    PackageInfo info = packageManager.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
+                } catch (PackageManager.NameNotFoundException e) {
+                    MyConfig.showToast(context, "WhatsApp tidak di install, mohon install aplikasi WhatsApp");
+                }
             }
         });
     }

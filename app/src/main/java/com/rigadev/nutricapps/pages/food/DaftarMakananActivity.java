@@ -203,6 +203,7 @@ public class DaftarMakananActivity extends AppCompatActivity implements ItemClic
         intent.putExtra("price", fm.getPrice());
         intent.putExtra("foodPhoto", fm.getFoodPhoto());
         intent.putExtra("address", fm.getAddress());
+        intent.putExtra("remark", fm.getRemark());
         startActivity(intent);
     }
 }

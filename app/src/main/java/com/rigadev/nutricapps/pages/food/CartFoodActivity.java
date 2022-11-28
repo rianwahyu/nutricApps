@@ -1,11 +1,13 @@
 package com.rigadev.nutricapps.pages.food;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -73,6 +75,8 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
     int sumTotalValue=0;
     SQLiteHelpers sqLiteHelpers;
 
+    public static final int REQUEST_MEMBER = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +115,17 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
         binding.rcCart.setAdapter(adapterCart);
         adapterCart.setDecreaseClickListener(this);
         adapterCart.setIncreaseClickListener(this);
+
+        binding.etAlamatPengiriman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //startActivity( new Intent(context, DeliveryChooseAddressActivity.class));
+                Intent intent = new Intent(context, DeliveryChooseAddressActivity.class);
+                //startActivity(intent);
+                startActivityForResult(intent,
+                        REQUEST_MEMBER);
+            }
+        });
     }
 
     @Override
@@ -165,7 +180,11 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
             binding.btnProsesPesanan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    checkData();
+                    if (binding.etAlamatPengiriman.getText().toString().isEmpty()){
+                        MyConfig.showToast(context, "Mohon mengisi alamat pengiriman");
+                    }else {
+                        checkData();
+                    }
 
                 }
             });
@@ -351,4 +370,18 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
         onResume();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQUEST_MEMBER :
+                if (resultCode == Activity.RESULT_OK){
+                    Bundle mExtra = data.getExtras();
+                    String address = mExtra.getString("address");
+                    binding.etAlamatPengiriman.setText(address);
+                }
+                break;
+        }
+    }
 }

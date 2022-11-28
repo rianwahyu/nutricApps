@@ -95,13 +95,17 @@ public class DetailFoodOrderActivity extends AppCompatActivity {
                     finish();
                 }
             });
+        }else if (statusPayment.equals("Ditolak")) {
+            binding.btnAksi.setText("");
+            binding.btnAksi.setVisibility(View.VISIBLE);
         }else if (statusPayment.equals("Diterima")) {
             binding.btnAksi.setText("");
-            binding.btnAksi.setVisibility(View.GONE);
+            binding.btnAksi.setVisibility(View.VISIBLE);
         }else if (statusPayment.equals("Dibayar")){
             binding.btnAksi.setText("");
-            binding.btnAksi.setVisibility(View.GONE);
+            binding.btnAksi.setVisibility(View.VISIBLE);
         }else if (statusPayment.equals("Dikirim")){
+
             binding.btnAksi.setText("Diterima");
             binding.btnAksi.setOnClickListener(new View.OnClickListener() {
                 @Override
