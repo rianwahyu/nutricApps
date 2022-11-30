@@ -43,7 +43,8 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginBottom="@dimen/_2sdp"
             android:text="Konten Notifikasi"
-            android:maxLines="2"/>
+            android:maxLines="2"
+            android:textColor="@color/primaryDark"/>
 
         <TextView
             android:id="@+id/textTannggal"
@@ -53,7 +54,8 @@
             android:fontFamily="@font/quicksand_semi_bold"
             app:layout_constraintTop_toBottomOf="@+id/textContentNotifikasi"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="@dimen/_11ssp"/>
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/primaryDark"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

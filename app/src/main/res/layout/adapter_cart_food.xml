@@ -55,7 +55,8 @@
         android:text="Rp. "
         android:fontFamily="@font/quicksand_medium"
         android:textSize="@dimen/_10ssp"
-        android:layout_marginLeft="@dimen/_4sdp"/>
+        android:layout_marginLeft="@dimen/_4sdp"
+        android:textColor="@color/primaryDark"/>
 
     <LinearLayout
         android:id="@+id/linearJumlah"

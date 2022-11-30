@@ -41,7 +41,8 @@
             app:layout_constraintLeft_toRightOf="@+id/textFoodName"
             app:layout_constraintTop_toTopOf="@id/textFoodName"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="@dimen/_12ssp"/>
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/primaryDark"/>
 
         <TextView
             android:id="@+id/textJumlahPorsi"
@@ -53,7 +54,8 @@
             app:layout_constraintLeft_toLeftOf="@id/textFoodName"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="@dimen/_2sdp"
-            android:text="Jumlah Porsi"/>
+            android:text="Jumlah Porsi"
+            android:textColor="@color/primaryDark"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

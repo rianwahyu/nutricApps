@@ -25,10 +25,13 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:background="@color/background">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintCart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/_10sdp">
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/titleAlamatPengiriman"
@@ -44,7 +47,6 @@
                 android:textSize="@dimen/_14ssp"
                 />
 
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAlamatPengiriman"
                 android:layout_width="match_parent"
@@ -59,7 +61,6 @@
                 android:inputType="textMultiLine"
                 android:textSize="@dimen/_12ssp"
                 android:focusable="false"/>
-
 
             <TextView
                 android:id="@+id/titleKeranjang"
@@ -156,6 +157,33 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/linearCartEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginBottom="@dimen/_2sdp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/warning_48px"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Data keranjang makanan tidak ditemukan\ntambahkan makanan dulu ya"
+                    android:fontFamily="@font/quicksand_light"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

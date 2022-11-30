@@ -33,6 +33,7 @@ import com.rigadev.nutricapps.pages.blog.BlogDetailActivity;
 import com.rigadev.nutricapps.pages.diary.MyDiaryActivity;
 import com.rigadev.nutricapps.pages.doctor.DaftarDokterActivity;
 import com.rigadev.nutricapps.pages.doctor.DetailDoctorActivity;
+import com.rigadev.nutricapps.pages.food.CartFoodActivity;
 import com.rigadev.nutricapps.pages.food.DaftarMakananActivity;
 import com.rigadev.nutricapps.pages.food.FoodDetailActivity;
 import com.rigadev.nutricapps.pages.notification.NotifikasiActivity;
@@ -127,6 +128,13 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(context, NotifikasiActivity.class));
+            }
+        });
+
+        binding.imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, CartFoodActivity.class));
             }
         });
 

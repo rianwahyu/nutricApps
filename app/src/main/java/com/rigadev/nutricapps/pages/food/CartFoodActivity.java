@@ -147,6 +147,23 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
         Log.d("jumlah", String.valueOf(c.getCount()));
 
         if (c != null) {
+            if (c.getCount()>0){
+                binding.linearCartEmpty.setVisibility(View.GONE);
+                binding.titleAlamatPengiriman.setVisibility(View.VISIBLE);
+                binding.etAlamatPengiriman.setVisibility(View.VISIBLE);
+                binding.titleKeranjang.setVisibility(View.VISIBLE);
+                binding.rcCart.setVisibility(View.VISIBLE);
+                binding.linearTotal.setVisibility(View.VISIBLE);
+            }else {
+                binding.linearCartEmpty.setVisibility(View.VISIBLE);
+                binding.titleAlamatPengiriman.setVisibility(View.GONE);
+                binding.etAlamatPengiriman.setVisibility(View.GONE);
+                binding.titleKeranjang.setVisibility(View.GONE);
+                binding.rcCart.setVisibility(View.GONE);
+                binding.linearTotal.setVisibility(View.GONE);
+            }
+
+
             while (c.moveToNext()) {
                 String idCart = c.getString(c.getColumnIndex(SQLiteHelpers.CART_ID));
                 String idMenu = c.getString(c.getColumnIndex(SQLiteHelpers.CART_IDFOOD));
@@ -190,7 +207,13 @@ public class CartFoodActivity extends AppCompatActivity implements DecreaseClick
             });
         } else {
             adapterCart.notifyDataSetChanged();
-            //Toast.makeText(getActivity(), "Tidak Ada data", Toast.LENGTH_SHORT).show();
+
+            binding.linearCartEmpty.setVisibility(View.VISIBLE);
+            binding.titleAlamatPengiriman.setVisibility(View.GONE);
+            binding.etAlamatPengiriman.setVisibility(View.GONE);
+            binding.titleKeranjang.setVisibility(View.GONE);
+            binding.rcCart.setVisibility(View.GONE);
+            binding.linearTotal.setVisibility(View.GONE);
         }
     }
 

@@ -41,7 +41,8 @@
             app:layout_constraintTop_toBottomOf="@+id/textNamaDokter"
             app:layout_constraintLeft_toLeftOf="@id/textNamaDokter"
             app:layout_constraintRight_toRightOf="@id/textNamaDokter"
-            android:textSize="@dimen/_11ssp"/>
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/primary"/>
 
         <TextView
             android:id="@+id/titleBiaya"
@@ -63,7 +64,8 @@
             app:layout_constraintTop_toBottomOf="@+id/titleBiaya"
             app:layout_constraintLeft_toLeftOf="@id/textNamaDokter"
             app:layout_constraintRight_toRightOf="@id/textNamaDokter"
-            android:textSize="@dimen/_11ssp"/>
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/primaryDark"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBuatJanji"

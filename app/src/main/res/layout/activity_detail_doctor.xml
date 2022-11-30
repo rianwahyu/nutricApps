@@ -94,7 +94,8 @@
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textNamaDokter" />
+                        app:layout_constraintTop_toBottomOf="@+id/textNamaDokter"
+                        android:textColor="@color/primary"/>
 
                     <TextView
                         android:id="@+id/textKetDokter"

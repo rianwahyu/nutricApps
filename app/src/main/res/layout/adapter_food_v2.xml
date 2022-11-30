@@ -94,7 +94,8 @@
             app:layout_constraintRight_toRightOf="@id/textNamaMakanan"
             android:textSize="@dimen/_11ssp"
             android:maxLines="4"
-            android:ellipsize="end"/>
+            android:ellipsize="end"
+            android:textColor="@color/primary"/>
 
         <TextView
             android:id="@+id/textNutrisi"

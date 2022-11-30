@@ -39,7 +39,8 @@
             android:fontFamily="@font/quicksand_semi_bold"
             app:layout_constraintTop_toTopOf="@id/textFoodOrderId"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="@dimen/_12ssp"/>
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/primary"/>
 
         <TextView
             android:id="@+id/textTotalPayment"
