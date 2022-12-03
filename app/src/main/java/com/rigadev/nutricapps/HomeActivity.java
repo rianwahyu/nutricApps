@@ -65,6 +65,7 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
     AdapterDoctor adapterDoctor;
     List<BlogModel> listBlog = new ArrayList<BlogModel>();
     AdapterBlog adapterBlog;
+    int back=0;
 
     @SuppressLint("WrongThread")
     @Override
@@ -144,13 +145,14 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
         Log.d("Token", "token :" +token);
         updateToken(uid, token);
 
+        binding.textTanggalNow.setText( MyConfig.convertDayNameToIndo(MyConfig.getCurentDate()) );
 
     }
 
     @Override
     protected void onResume() {
-        super.onResume();
         getCalculateCalories();
+        super.onResume();
     }
 
     void getCalculateCalories(){
@@ -178,12 +180,15 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
                                         String kaloriMasuk = users.getString("kaloriMasuk");
                                         String imt = users.getString("imt");
                                         String perbandingan = users.getString("perbandingan");
+                                        String ketNutrisi = users.getString("ketNutrisi");
+                                        String kalKet = users.getString("kalKet");
 
                                         binding.textKaloriDibutuhkan.setText(kaloriDibutuhkan+"\nkkal");
                                         binding.textKaloriDiKeluarkan.setText(kaloriKeluar+"\nkkal");
                                         binding.textKaloriMasuk.setText(kaloriMasuk+"\nkkal");
                                         binding.textSisaKalori.setText(perbandingan);
                                         binding.textImt.setText(imt);
+                                        binding.textKetKebutuhanKalori.setText(kalKet);
                                     }
 
                                 }else{
@@ -586,7 +591,13 @@ public class HomeActivity extends AppCompatActivity implements ItemClickListener
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        back++;
+        if(back==1){
+            MyConfig.showToast(context, "Klik tombol kembali sekali lagi untuk keluar");
+        }else if (back==2){
+            finish();
+        }
+        //super.onBackPressed();
     }
 
     @Override

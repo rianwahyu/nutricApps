@@ -1,5 +1,7 @@
 package com.rigadev.nutricapps.pages.nutrition;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -7,10 +9,15 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
@@ -19,7 +26,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.forms.sti.progresslitieigb.ProgressLoadingJIGB;
+import com.rigadev.nutricapps.R;
 import com.rigadev.nutricapps.databinding.ActivityCheckNutritionBinding;
+import com.rigadev.nutricapps.model.PaymentMethodModel;
 import com.rigadev.nutricapps.pages.doctor.DaftarDokterActivity;
 import com.rigadev.nutricapps.pages.food.DaftarMakananActivity;
 import com.rigadev.nutricapps.util.MyConfig;
@@ -33,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -46,6 +56,9 @@ public class CheckNutritionActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     String tglCheckNutrisi;
+
+    String jenisKelamin[] = {"Pilih Jenis Kelamin","Pria", "Wanita"};
+    String gender ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +96,55 @@ public class CheckNutritionActivity extends AppCompatActivity {
                 checkForm();
             }
         });
+
+        //ArrayList spinCategory = (ArrayList) listPayment;
+
+        ArrayAdapter<CharSequence> langAdapter = new ArrayAdapter<CharSequence>(context,
+                R.layout.spinner_text, jenisKelamin ){
+
+            @Override
+            public boolean isEnabled(int position) {
+                if (position ==0 ) {
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+        langAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown);
+        binding.spinnerJenisKelamin.setAdapter(langAdapter);
+        binding.spinnerJenisKelamin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                //PaymentMethodModel data = (PaymentMethodModel) parent.getItemAtPosition(position);
+
+                if (position > 0){
+                    //MyConfig.showToast(context, selectedItemText);
+                    gender = selectedItemText;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void checkForm() {
@@ -96,6 +158,8 @@ public class CheckNutritionActivity extends AppCompatActivity {
             MyConfig.showToast(context, "Mohon mengisi berat badan");
         }else if (binding.etTinggiBadan.getText().toString().isEmpty()){
             MyConfig.showToast(context, "Mohon mengisi tinggi badan");
+        }else if (gender.isEmpty()){
+            MyConfig.showToast(context, "Mohon memilih jenis kelamin");
         }else {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Cek Nutrisi");
@@ -141,13 +205,15 @@ public class CheckNutritionActivity extends AppCompatActivity {
                         String nama = jsonObject.getString("nama");
                         String tanggalPengecekan = jsonObject.getString("tanggalPengecekan");
                         String umur = jsonObject.getString("umur");
+                        String gender = jsonObject.getString("gender");
                         String berat = jsonObject.getString("berat");
                         String tinggi = jsonObject.getString("tinggi");
                         String imt = jsonObject.getString("imt");
                         String ketentuanImt = jsonObject.getString("ketentuanImt");
                         String keteranganKetentuanImt = jsonObject.getString("keteranganKetentuanImt");
 
-                        onLoadLinearResult(tanggalPengecekan, nama, umur, berat, tinggi, imt, ketentuanImt, keteranganKetentuanImt);
+                        onLoadLinearResult(tanggalPengecekan, nama, umur, berat, tinggi, imt,
+                                ketentuanImt, keteranganKetentuanImt, gender);
                     }else {
                         new AestheticDialog.Builder(
                                 CheckNutritionActivity.this,
@@ -188,6 +254,7 @@ public class CheckNutritionActivity extends AppCompatActivity {
                 params.put("age", binding.etUmu.getText().toString());
                 params.put("weight", binding.etBeratBadan.getText().toString());
                 params.put("height", binding.etTinggiBadan.getText().toString());
+                params.put("gender", gender);
                 return params;
             }
         };
@@ -199,12 +266,15 @@ public class CheckNutritionActivity extends AppCompatActivity {
         mRequestQueue.add(stringRequest);
     }
 
-    private void onLoadLinearResult(String tanggalPengecekan, String nama, String umur, String berat, String tinggi, String imt, String ketentuanImt, String keteranganKetentuanImt) {
+    private void onLoadLinearResult(String tanggalPengecekan, String nama, String umur, String berat,
+                                    String tinggi, String imt, String ketentuanImt,
+                                    String keteranganKetentuanImt, String gender) {
         binding.linearFormNutrition.setVisibility(View.GONE);
         binding.linearFormResultNutrition.setVisibility(View.VISIBLE);
         binding.textTanggalPengecekanResult.setText(tanggalPengecekan);
         binding.textNamaLengkapResult.setText(nama);
         binding.textImtResult.setText(imt);
+        binding.textJenisKelminResult.setText(gender);
         binding.textBeratBadanResult.setText(berat +" kg");
         binding.textTinggiBadanResult.setText(tinggi+" cm");
         binding.textUmurResult.setText(umur +" tahun");

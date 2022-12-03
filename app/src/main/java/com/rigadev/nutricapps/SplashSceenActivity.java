@@ -31,12 +31,10 @@ public class SplashSceenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (new SessionManager(context).isLoggedin()){
-                    Intent o = new Intent(context, HomeActivity.class);
-                    startActivity(o);
+                    startActivity(new Intent(context, HomeActivity.class));
                     finish();
                 }else {
-                    Intent o = new Intent(context, MainActivity.class);
-                    startActivity(o);
+                    startActivity(new Intent(context, MainActivity.class));
                     finish();
                 }
             }

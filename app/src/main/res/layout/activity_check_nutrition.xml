@@ -366,6 +366,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/quicksand_bold"
+                            android:text="Jenis Kelamin"
+                            android:textColor="#4B6855"
+                            android:textSize="@dimen/_14ssp"
+                            android:layout_marginTop="@dimen/_5sdp"/>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textJenisKelminResult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_edit_text_result_nutrition"
+                            android:hint="Jenis Kelamin"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:inputType="text"
+                            android:focusable="true"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/quicksand_bold"
                             android:text="Hasil IMT"
                             android:textColor="#4B6855"
                             android:textSize="@dimen/_14ssp"
@@ -428,14 +451,16 @@
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/quicksand_medium"
                                             android:text="Berat Badan"
-                                            android:textSize="@dimen/_12ssp"/>
+                                            android:textSize="@dimen/_12ssp"
+                                            android:textColor="@color/black"/>
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/quicksand_medium"
                                             android:text=" : "
-                                            android:textSize="@dimen/_12ssp"/>
+                                            android:textSize="@dimen/_12ssp"
+                                            android:textColor="@color/black"/>
 
                                         <TextView
                                             android:id="@+id/textBeratBadanResult"
@@ -460,14 +485,16 @@
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/quicksand_medium"
                                             android:text="Tinggi Badan"
-                                            android:textSize="@dimen/_12ssp"/>
+                                            android:textSize="@dimen/_12ssp"
+                                            android:textColor="@color/black"/>
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/quicksand_medium"
                                             android:text=" : "
-                                            android:textSize="@dimen/_12ssp"/>
+                                            android:textSize="@dimen/_12ssp"
+                                            android:textColor="@color/black"/>
 
                                         <TextView
                                             android:id="@+id/textTinggiBadanResult"
@@ -492,14 +519,16 @@
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/quicksand_medium"
                                             android:text="Umur"
-                                            android:textSize="@dimen/_12ssp"/>
+                                            android:textSize="@dimen/_12ssp"
+                                            android:textColor="@color/black"/>
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/quicksand_medium"
                                             android:text=" : "
-                                            android:textSize="@dimen/_12ssp"/>
+                                            android:textSize="@dimen/_12ssp"
+                                            android:textColor="@color/black"/>
 
                                         <TextView
                                             android:id="@+id/textUmurResult"
